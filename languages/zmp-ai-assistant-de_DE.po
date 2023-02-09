@@ -1,0 +1,189 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: zmp-ai-assistant\n"
+"POT-Creation-Date: 2023-01-26 19:29+0100\n"
+"PO-Revision-Date: 2023-01-26 19:32+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;esc_html__\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: .git\n"
+
+#: app/AIForm.php:47 app/AIForm.php:63 app/Settings.php:73 app/Settings.php:82
+msgid "Completion"
+msgstr "Completion"
+
+#: app/AIForm.php:48
+msgid ""
+"You input some text as a prompt, and the model will generate a text "
+"completion that attempts to match whatever context or pattern you gave it. "
+"For example, if you give the API the prompt, \"As Descartes said, I think, "
+"therefore\", it will return the completion \" I am\" with high probability."
+msgstr ""
+"Sie geben einen Text als Aufforderung ein, und das Modell generiert eine "
+"Textvervollständigung, die versucht, dem von Ihnen angegebenen Kontext oder "
+"Muster zu entsprechen. Wenn Sie der API zum Beispiel die Aufforderung \"As "
+"Descartes said, I think, therefore\" geben, wird sie mit hoher "
+"Wahrscheinlichkeit die Vervollständigung \" I am\" zurückgeben."
+
+#: app/AIForm.php:51 app/AIForm.php:64 app/Settings.php:74 app/Settings.php:112
+msgid "Edit"
+msgstr "Edit"
+
+#: app/AIForm.php:52
+msgid ""
+"You provide some text and an instruction for how to modify it, and the model "
+"will attempt to edit it accordingly. This is a natural interface for "
+"translating, editing, and tweaking text. This is also useful for refactoring "
+"and working with code."
+msgstr ""
+"Sie geben einen Text und eine Änderungsanweisung vor, und das Modell wird "
+"versuchen, ihn entsprechend zu bearbeiten. Dies ist eine natürliche "
+"Schnittstelle zum Übersetzen, Bearbeiten und Optimieren von Text. Dies ist "
+"auch für das Refactoring und die Arbeit mit Code nützlich."
+
+#: app/AIForm.php:55 app/AIForm.php:65 app/Settings.php:75 app/Settings.php:142
+msgid "Image"
+msgstr "Image"
+
+#: app/AIForm.php:56
+msgid ""
+"The image generations endpoint allows you to create an original image given "
+"a text prompt. Generated images can have a size of 256x256, 512x512, or "
+"1024x1024 pixels. Smaller sizes are faster to generate. You can request 1-10 "
+"images at a time using the n parameter."
+msgstr ""
+"Mit dem Endpunkt für die Bilderzeugung können Sie ein Originalbild anhand "
+"einer Textaufforderung erstellen. Die erzeugten Bilder können eine Größe von "
+"256x256, 512x512 oder 1024x1024 Pixel haben. Kleinere Größen sind schneller "
+"zu erzeugen. Mit dem Parameter n können Sie 1-10 Bilder auf einmal anfordern."
+
+#: app/AIForm.php:74 app/AIForm.php:114
+msgid "Prompt"
+msgstr "Eingabeaufforderung"
+
+#: app/AIForm.php:80
+msgid "Suffix (optional)"
+msgstr "Suffix (optional)"
+
+#: app/AIForm.php:90
+msgid "Input"
+msgstr "Text"
+
+#: app/AIForm.php:96
+msgid "Instruction"
+msgstr "Instruktion"
+
+#: app/AIForm.php:104 app/AIForm.php:120
+msgid "Result"
+msgstr "Resultat"
+
+#: app/AIForm.php:241
+msgid "Submit"
+msgstr "Senden"
+
+#: app/AIForm.php:242
+msgid "Reset"
+msgstr "Zurücksetzen"
+
+#: app/AIForm.php:246
+msgid "Copy selected"
+msgstr "Markierung kopieren"
+
+#: app/AIForm.php:249
+msgid "Selected to title"
+msgstr "Markierung nach Titel"
+
+#: app/AIForm.php:252
+msgid "Selected to content/block"
+msgstr "Markierung nach Inhalt/Block"
+
+#: app/AIForm.php:273 app/Metabox.php:34 app/SettingsInit.php:15
+msgid "AI Assistant"
+msgstr "AI Assistent"
+
+#: app/AIForm.php:275
+msgid "Choose template:"
+msgstr "Vorlage auswählen:"
+
+#: app/AIForm.php:278
+msgid "Default"
+msgstr "Standard"
+
+#: app/AIForm.php:289
+msgid "Save"
+msgstr "Speichern"
+
+#: app/App.php:218 app/Settings.php:65
+msgid "Default settings"
+msgstr "Standard Einstellungen"
+
+#: app/Metabox.php:55
+msgid "Install AI Assistant"
+msgstr "AI Assistent installieren"
+
+#: app/Metabox.php:56
+msgid "Open AI API key missing"
+msgstr "AI-Assistent öffnen"
+
+#: app/Metabox.php:66
+msgid "Open AI Assistant"
+msgstr "AI-Assistent öffnen"
+
+#: app/Metabox.php:67
+msgid ""
+"Click \"Start\" to create content using GPT-3 s artificial intelligence."
+msgstr ""
+"Klicken Sie auf \"Start\", um Inhalte mit Hilfe der künstlichen Intelligenz "
+"von GPT-3 zu erstellen."
+
+#: app/Settings.php:18
+msgid "Template deleted."
+msgstr "Vorlage gelöscht."
+
+#: app/Settings.php:32
+msgid "API credentials for GPT-3"
+msgstr "API-Zugangsdaten für GPT-3"
+
+#: app/Settings.php:39
+msgid "API Key"
+msgstr "API-Schlüssel"
+
+#: app/Settings.php:53
+msgid "Organization ID (optional)"
+msgstr "Organisations-ID (optional)"
+
+#: app/Settings.php:361
+msgid "Templates"
+msgstr "Vorlagen"
+
+#: app/Settings.php:367
+msgid "Default Template"
+msgstr "Standard Vorlage"
+
+#: app/Settings.php:405
+msgid "Template List"
+msgstr "Vorlagen Liste"
+
+#: app/SettingsInit.php:20 config/config.php:9
+msgid "ZMP AI Assistant"
+msgstr "ZMP AI Assistent"
+
+#: app/SettingsInit.php:21
+msgid ""
+"This Plugin adds the AI Assistant to the edit-post-screen, to directly "
+"create/edit content and images with gpt-3, while working in WordPress editor."
+msgstr ""
+"Dieses Plugin fügt den AI-Assistenten in den Edit-Post-Bildschirm ein, um "
+"Inhalte und Bilder direkt mit GTP-3 zu erstellen/bearbeiten, während man im "
+"WordPress-Editor arbeitet."
+
+#~ msgid "Model"
+#~ msgstr "Modell"
