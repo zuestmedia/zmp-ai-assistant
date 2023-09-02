@@ -5,7 +5,7 @@
   Description: This plugin helps webmasters to create content with artificial intelligence support from GPT-3
   Author: zuestmedia
   Author URI: https://zuestmedia.com/
-  Version: 0.9.3
+  Version: 0.9.4
   Text Domain: zmp-ai-assistant
   Domain Path: /languages
   ZMDLID: jfwo0j320ivjvn0432nfg0sweri92fhvbnws

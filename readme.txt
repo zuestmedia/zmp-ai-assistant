@@ -1,9 +1,9 @@
 === ZMP AI Assistant ===
 Contributors: zuestmedia
-Stable tag: 0.9.3
+Stable tag: 0.9.4
 Tags: gpt-3, content generator, zmplugin
 Requires at least: 4.7
-Tested up to: 6.1.1
+Tested up to: 6.3.1
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -30,6 +30,9 @@ No. ZMP AI Assistant is an extension of ZMPlugin.
 2. This is the second screen shot
 
 == Changelog ==
+
+= 0.9.4 =
+* Fix: Style Error in Form
 
 = 0.9.3 =
 * Update: escaping & translations added

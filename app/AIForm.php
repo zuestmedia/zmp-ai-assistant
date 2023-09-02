@@ -269,9 +269,8 @@ class AIForm {
       <div id="zmp-aia-modal" uk-modal="esc-close:false;bg-close:false;">
         <div id="zmp-aia-modal-screen" class="uk-modal-dialog" style="width: 1200px;">
 
-            <div class="uk-modal-header uk-background-primary uk-section-primary">
+            <div class="uk-modal-header uk-background-primary uk-section-primary uk-preserve-color">
               <h2 class="uk-modal-title uk-align-left uk-margin-small-top uk-margin-small-bottom" style="color:#fff;"><?php echo esc_html__( 'AI Assistant', 'zmp-ai-assistant' ); ?></h2>
-              <button class="uk-modal-close-default" type="button" uk-close></button> 
               <div class="uk-align-left uk-margin-top uk-margin-remove-bottom uk-margin-small-right" style="line-height: 32px;font-weight: 600;color:#fff;"><?php echo esc_html__( 'Choose template:', 'zmp-ai-assistant' ); ?></div>
               <div class="uk-align-left uk-margin-top uk-margin-small-bottom">
                 <select class="uk-select uk-width-medium uk-form-small" id="zmp-aia-template">
@@ -290,7 +289,8 @@ class AIForm {
                     </div>
                   </div>
                 </form>                
-              </div>             
+              </div>
+              <button class="uk-modal-close-default uk-light" type="button" uk-close></button>         
             </div>
 
             <div class="uk-modal-body uk-background-muted">                
