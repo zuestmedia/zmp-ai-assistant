@@ -64,7 +64,7 @@ class Metabox {
 
       <div class="uk-text-center uk-margin-top">
         <a class="uk-button uk-button-primary uk-border-rounded" href="#zmp-aia-modal" uk-toggle><?php echo esc_html__( 'Open AI Assistant', 'zmp-ai-assistant' ); ?></a>
-        <p><?php echo esc_html__( 'Click "Start" to create content using GPT-3 s artificial intelligence.', 'zmp-ai-assistant' ); ?></p>
+        <p><?php echo esc_html__( 'Click "Open" to create content or images.', 'zmp-ai-assistant' ); ?></p>
       </div>
   
       <?php

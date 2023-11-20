@@ -34,21 +34,17 @@ class App extends \ZMP\Plugin\App {
 
   private $settings = array(
     "prompt" => 'Say "hi".',
-    "suffix" => NULL,
-    "input" => 'This is a gramar exerzise.',
-    "instruction" => 'Fix the grammar.',
-    "imageprompt" => 'A black cat',
-    "model" => 'text-davinci-003',
-    "max_tokens" => 16,
-    "n" => 1,
+    "model" => 'gpt-4',
+    "max_tokens" => 500,
     "temperature" => 1,
     "top_p" => 1,
-    "best_of" => 1,
     "stop" => NULL,
     "presence_penalty" => 0,
     "frequency_penalty" => 0,
-    "size" => '1024x1024',
-    "response_format" => 'url',
+    "imageprompt" => 'A black cat', //img
+    "size" => '1024x1024', //img
+    "quality" => 'standard', //img
+    "style" => 'vivid', //img
   );
   public function getSettings(){
     return Helpers::getOption(

@@ -76,36 +76,6 @@ class PrepareTemplate {
   
       }
 
-      if(array_key_exists('suffix', $data)){
-
-        $data['suffix'] = $this->getTitle($data['suffix'], $id, $template_name);
-        $data['suffix'] = $this->getContent($data['suffix'], $id, $template_name);
-        $data['suffix'] = $this->getExcerpt($data['suffix'], $id, $template_name);
-        $data['suffix'] = $this->getTaxonomies($data['suffix'], $id, $template_name);
-        $data['suffix'] = $this->getPostMeta($data['suffix'], $id, $template_name);
-  
-      }
-
-      if(array_key_exists('instruction', $data)){
-
-        $data['instruction'] = $this->getTitle($data['instruction'], $id, $template_name);
-        $data['instruction'] = $this->getContent($data['instruction'], $id, $template_name);
-        $data['instruction'] = $this->getExcerpt($data['instruction'], $id, $template_name);
-        $data['instruction'] = $this->getTaxonomies($data['instruction'], $id, $template_name);
-        $data['instruction'] = $this->getPostMeta($data['instruction'], $id, $template_name);
-  
-      }
-
-      if(array_key_exists('input', $data)){
-
-        $data['input'] = $this->getTitle($data['input'], $id, $template_name);
-        $data['input'] = $this->getContent($data['input'], $id, $template_name);
-        $data['input'] = $this->getExcerpt($data['input'], $id, $template_name);
-        $data['input'] = $this->getTaxonomies($data['input'], $id, $template_name);
-        $data['input'] = $this->getPostMeta($data['input'], $id, $template_name);
-  
-      }
-
       if(array_key_exists('imageprompt', $data)){
 
         $data['imageprompt'] = $this->getTitle($data['imageprompt'], $id, $template_name);

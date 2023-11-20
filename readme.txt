@@ -1,18 +1,30 @@
 === ZMP AI Assistant ===
 Contributors: zuestmedia
-Stable tag: 0.9.4
-Tags: gpt-3, content generator, zmplugin
+Stable tag: 1.0.0
+Tags: gpt, open ai, chat gpt, content generator, image generator, zmplugin
 Requires at least: 4.7
-Tested up to: 6.3.1
+Tested up to: 6.4
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-This Plugin adds the AI Assistant to the edit-post-screen, to directly create/edit content and images with gpt-3, while working in WordPress editor.
+This Plugin adds the AI Assistant to the edit-post-screen, to directly create content and images with artificial intelligence, while working in WordPress editor.
 
 == Description ==
 
-[ZMP AI Assistant](https://zuestmedia.com/plugins/) extends the WordPress edit-post-screen with the AI Assistant to directly generate/edit content with gpt-3.
+[ZMP AI Assistant](https://zuestmedia.com/plugins/) extends the WordPress edit-post-screen with the AI Assistant to directly create content and images with artificial intelligence.
+
+An API key from Open AI is required to use the AI Assistant. You can get a key in your user account at [Open AI](https://platform.openai.com/api-keys).
+
+The AI Assistant accesses the API interface of Open AI to generate texts and images.
+
+Data is sent to and retrieved from the following interfaces: 
+
+- https://api.openai.com/v1/chat/completions
+- https://api.openai.com/v1/images/generations
+- https://api.openai.com/v1/models
+
+Here you can find all information about the terms of use and data protection of Open AI: https://openai.com/policies. 
 
 == Frequently Asked Questions ==
 
@@ -24,12 +36,15 @@ To install ZMP AI Assistant, go to Dashboard >> Plugins >> Add new. Then enter "
 
 No. ZMP AI Assistant is an extension of ZMPlugin.
 
-== Screenshots ==
-
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Screenshots are stored in the /assets directory.
-2. This is the second screen shot
-
 == Changelog ==
+
+= 1.0.0 =
+* Update: Ready for release on wordrpess.org
+* Update: Readme text
+* Update: Replaced legacy completions API with actual chat completions API
+* Update: Default model settings change to gpt-4
+* Update: Image API now with dall-e-3
+* Remove: Legacy edit API
 
 = 0.9.4 =
 * Fix: Style Error in Form

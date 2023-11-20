@@ -265,54 +265,36 @@ class APICalls {
           'model' => $output['zmp-aia-input-model'],//required
           'max_tokens' => intval( $output['zmp-aia-input-max_tokens'] ),      
           'temperature' => intval( $output['zmp-aia-input-temperature']),      
-          'top_p' => intval( $output['zmp-aia-input-top_p']),      
-          'n' => intval( $output['zmp-aia-input-n']),      
-          'best_of' => intval( $output['zmp-aia-input-best_of']),      
+          'top_p' => intval( $output['zmp-aia-input-top_p']),        
           'presence_penalty' => floatval($output['zmp-aia-input-presence_penalty']),      
           'frequency_penalty' => floatval($output['zmp-aia-input-frequency_penalty']),      
         );
   
         // only set if not '' 
         if($output['zmp-aia-input-prompt']){
-          $body['prompt'] = $output['zmp-aia-input-prompt'];
-        }
-        if($output['zmp-aia-input-suffix']){
-          $body['suffix'] = $output['zmp-aia-input-suffix'];
+          $body['messages'] = array(
+            array(
+              'role' => 'user',
+              'content' => $output['zmp-aia-input-prompt']
+            )
+          );
         }
         if($output['zmp-aia-input-stop']){
           $body['stop'] = $output['zmp-aia-input-stop'];
         }
   
-        $api_response = $this->postrequest( $body, 'https://api.openai.com/v1/completions' );
+        $api_response = $this->postrequest( $body, 'https://api.openai.com/v1/chat/completions' );
   
-      } elseif($output['zmp-aia-input-mode'] == 'edit'){
-  
-        $type = 'edit';
-  
-        $body = array(
-          'model' => $output['zmp-aia-input-model'],//required
-          'instruction' => $output['zmp-aia-input-instruction'],//required
-          'temperature' => intval( $output['zmp-aia-input-temperature']),      
-          'top_p' => intval( $output['zmp-aia-input-top_p']),      
-          'n' => intval( $output['zmp-aia-input-n']),      
-        );
-
-        // only set if not '' 
-        if($output['zmp-aia-input-input']){
-          $body['input'] = $output['zmp-aia-input-input'];
-        }
-  
-        $api_response = $this->postrequest( $body, 'https://api.openai.com/v1/edits' );
-  
-      } elseif($output['zmp-aia-input-mode'] == 'image'){
+      }  elseif($output['zmp-aia-input-mode'] == 'image'){
   
         $type = 'image';
   
         $body = array(
           'prompt' => $output['zmp-aia-input-imageprompt'],//required
-          'n' => intval( $output['zmp-aia-input-n']),      
+          'model' => 'dall-e-3',   //always uses dall-e-3
           'size' => $output['zmp-aia-input-size'],   
-          'response_format' => $output['zmp-aia-input-response_format'],   
+          'quality' => $output['zmp-aia-input-quality'],   
+          'style' => $output['zmp-aia-input-style'],   
         );
   
         $api_response = $this->postrequest( $body, 'https://api.openai.com/v1/images/generations' );

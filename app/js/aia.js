@@ -196,7 +196,7 @@ jQuery(document).ready(function($){
     if(response['type'] == 'completion'){
 
       $.each(apiresponse['choices'], function( index, value ) {
-        $('#zmp-aia-input-prompt').val($('#zmp-aia-input-prompt').val() + apiresponse['choices'][index]['text']);
+        $('#zmp-aia-input-prompt').val($('#zmp-aia-input-prompt').val() + ' ' + apiresponse['choices'][index]['message']['content']);
 
         if(apiresponse['choices'][index]['finish_reason'] !== 'stop'){
 
@@ -204,12 +204,6 @@ jQuery(document).ready(function($){
 
         }
 
-      });
-
-    } else if(response['type'] == 'edit'){
-
-      $.each(apiresponse['choices'], function( index, value ) {
-        $('#zmp-aia-edit-result').val($('#zmp-aia-edit-result').val() + apiresponse['choices'][index]['text']);
       });
 
     } else if(response['type'] == 'image'){
@@ -262,7 +256,7 @@ jQuery(document).ready(function($){
         zmpaiaSuccessLoadingScreen($);
 
         //if uploaded change link to 
-        $('a.zmp-aia-image-upload[data-image-url="' + imageurl + '"]').replaceWith('<div><i uk-icon="check"></i> Uploaded</div>');
+        $('a.zmp-aia-image-upload[data-image-url="' + imageurl + '"]').replaceWith('<div><i uk-icon="check"></i> Saved</div>');
 
       }); 
 

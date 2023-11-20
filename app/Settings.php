@@ -29,7 +29,7 @@ class Settings {
       $this->form->setSettingsFields(1); //necessary hidden security and settings fields for options.php handler
 
         $this->form->addField('html',
-          $template->htmlSettingsFormAccordionStart(__('API credentials for GPT-3','zmp-ai-assistant'))
+          $template->htmlSettingsFormAccordionStart(__('API credentials for Open AI','zmp-ai-assistant'))
         );    
 
           $this->form->addField(
@@ -71,7 +71,6 @@ class Settings {
               <div>
                 <ul class="uk-subnav uk-subnav-pill" uk-margin>
                   <li class="uk-active" uk-filter-control=".tag_completion"><a href="#">'.__('Completion','zmp-ai-assistant').'</a></li>
-                  <li uk-filter-control=".tag_edit"><a href="#">'.__('Edit','zmp-ai-assistant').'</a></li>
                   <li uk-filter-control=".tag_image"><a href="#">'.__('Image','zmp-ai-assistant').'</a></li>
                 </ul>
               </div>          
@@ -88,49 +87,6 @@ class Settings {
                     'class'=>'uk-textarea uk-form-width-large',
                     'name'=>$zmpaiassistant['app']->getSettingFieldName('prompt'),
                     'default_value'=>$zmpaiassistant['app']->getSettingDefaultValue('prompt')
-                  ),
-                  'option_mod',//type
-                  '_api_settings',//optionsgroup + "_option_mod_name"
-                  'strarray'
-              );
-    
-              $this->form->addField(
-                'textarea',
-                  array(
-                    'label'=> 'suffix',
-                    'class'=>'uk-textarea uk-form-width-large',
-                    'name'=>$zmpaiassistant['app']->getSettingFieldName('suffix'),
-                    'default_value'=>$zmpaiassistant['app']->getSettingDefaultValue('suffix')
-                  ),
-                  'option_mod',//type
-                  '_api_settings',//optionsgroup + "_option_mod_name"
-                  'strarray'
-              );
-                                    
-            $this->form->addField('html', '</li><li class="tag_edit">' );
-
-              $this->form->addField('html', '<h2>'.__('Edit','zmp-ai-assistant').'</h2>' );
-
-              $this->form->addField(
-                'textarea',
-                  array(
-                    'label'=> 'input',
-                    'class'=>'uk-textarea uk-form-width-large',
-                    'name'=>$zmpaiassistant['app']->getSettingFieldName('input'),
-                    'default_value'=>$zmpaiassistant['app']->getSettingDefaultValue('input')
-                  ),
-                  'option_mod',//type
-                  '_api_settings',//optionsgroup + "_option_mod_name"
-                  'strarray'
-              );
-    
-              $this->form->addField(
-                'textarea',
-                  array(
-                    'label'=> 'instruction',
-                    'class'=>'uk-textarea uk-form-width-large',
-                    'name'=>$zmpaiassistant['app']->getSettingFieldName('instruction'),
-                    'default_value'=>$zmpaiassistant['app']->getSettingDefaultValue('instruction')
                   ),
                   'option_mod',//type
                   '_api_settings',//optionsgroup + "_option_mod_name"
@@ -155,7 +111,7 @@ class Settings {
               );
 
 
-            $this->form->addField('html', '</li><li class="tag_completion tag_edit">' );
+            $this->form->addField('html', '</li><li class="tag_completion">' );
               $this->form->addField(
                 'select',
                   array(
@@ -169,44 +125,7 @@ class Settings {
                   '_api_settings',//optionsgroup + "_option_mod_name"
                   'textarray'
               );
-
-              
-
-            $this->form->addField('html', '</li><li class="tag_completion tag_edit tag_image">' );
-              $this->form->addField(
-                'input',
-                  array(
-                    'type'=> 'number',
-                    'step'=> '1',
-                    'min'=> '1',
-                    'max'=> '10',
-                    'label'=> 'n',
-                    'class'=>'uk-input uk-form-width-large uk-form-small',
-                    'name'=>$zmpaiassistant['app']->getSettingFieldName('n'),
-                    'default_value'=>$zmpaiassistant['app']->getSettingDefaultValue('n')
-                  ),
-                  'option_mod',//type
-                  '_api_settings',//optionsgroup + "_option_mod_name"
-                  'numericarray'
-              );  
-
-            $this->form->addField('html', '</li><li class="tag_completion">' );
-              $this->form->addField(
-                'input',
-                  array(
-                    'type'=> 'number',
-                    'step'=> '1',
-                    'min'=> '1',
-                    'max'=> '10',
-                    'label'=> 'best_of',
-                    'class'=>'uk-input uk-form-width-large uk-form-small',
-                    'name'=>$zmpaiassistant['app']->getSettingFieldName('best_of'),
-                    'default_value'=>$zmpaiassistant['app']->getSettingDefaultValue('best_of')
-                  ),
-                  'option_mod',//type
-                  '_api_settings',//optionsgroup + "_option_mod_name"
-                  'numericarray'
-              );
+  
 
             $this->form->addField('html', '</li><li class="tag_completion">' );
               $this->form->addField(
@@ -225,23 +144,8 @@ class Settings {
                   '_api_settings',//optionsgroup + "_option_mod_name"
                   'numericarray'
               );
-
-            $this->form->addField('html', '</li><li class="tag_completion">' );
-              $this->form->addField(
-                'input',
-                  array(
-                    'type'=> 'text',
-                    'label'=> 'stop',
-                    'class'=>'uk-input uk-form-width-large uk-form-small',
-                    'name'=>$zmpaiassistant['app']->getSettingFieldName('stop'),
-                    'default_value'=>$zmpaiassistant['app']->getSettingDefaultValue('stop')
-                  ),
-                  'option_mod',//type
-                  '_api_settings',//optionsgroup + "_option_mod_name"
-                  'strarray'
-              );
               
-            $this->form->addField('html', '</li><li class="tag_completion tag_edit">' );
+            $this->form->addField('html', '</li><li class="tag_completion">' );
               $this->form->addField(
                 'input',
                   array(
@@ -259,7 +163,7 @@ class Settings {
                   'floatarray'
               );
 
-            $this->form->addField('html', '</li><li class="tag_completion tag_edit">' );
+            $this->form->addField('html', '</li><li class="tag_completion">' );
               $this->form->addField(
                 'input',
                   array(
@@ -315,6 +219,21 @@ class Settings {
                   'floatarray'
               );  
 
+            $this->form->addField('html', '</li><li class="tag_completion">' );
+              $this->form->addField(
+                'input',
+                  array(
+                    'type'=> 'text',
+                    'label'=> 'stop',
+                    'class'=>'uk-input uk-form-width-large uk-form-small',
+                    'name'=>$zmpaiassistant['app']->getSettingFieldName('stop'),
+                    'default_value'=>$zmpaiassistant['app']->getSettingDefaultValue('stop')
+                  ),
+                  'option_mod',//type
+                  '_api_settings',//optionsgroup + "_option_mod_name"
+                  'strarray'
+              );
+
             $this->form->addField('html', '</li><li class="tag_image">' );
               $this->form->addField(
                 'select',
@@ -322,9 +241,9 @@ class Settings {
                     'label'=> 'size',
                     'class'=>'uk-select uk-form-width-large uk-form-small',
                     'options'=> array(
-                      array('option'=> '256x256','value'=>'256x256'),
-                      array('option'=> '512x512','value'=>'512x512'),
-                      array('option'=> '1024x1024','value'=>'1024x1024')
+                      array('option'=> '1024x1024','value'=>'1024x1024'),
+                      array('option'=> '1792x1024','value'=>'1792x1024'),
+                      array('option'=> '1024x1792','value'=>'1024x1792')
                     ),
                     'name'=>$zmpaiassistant['app']->getSettingFieldName('size'),
                     'default_value'=>$zmpaiassistant['app']->getSettingDefaultValue('size')
@@ -332,25 +251,43 @@ class Settings {
                   'option_mod',//type
                   '_api_settings',//optionsgroup + "_option_mod_name"
                   'textarray'
-              );  
-    
+              );   
+
             $this->form->addField('html', '</li><li class="tag_image">' );
               $this->form->addField(
                 'select',
                   array(
-                    'label'=> 'response_format',
+                    'label'=> 'quality',
                     'class'=>'uk-select uk-form-width-large uk-form-small',
                     'options'=> array(
-                      array('option'=> 'url','value'=>'url'),
-                      array('option'=> 'b64_json','value'=>'b64_json')
+                      array('option'=> 'standard','value'=>'standard'),
+                      array('option'=> 'hd','value'=>'hd')
                     ),
-                    'name'=>$zmpaiassistant['app']->getSettingFieldName('response_format'),
-                    'default_value'=>$zmpaiassistant['app']->getSettingDefaultValue('response_format')
+                    'name'=>$zmpaiassistant['app']->getSettingFieldName('quality'),
+                    'default_value'=>$zmpaiassistant['app']->getSettingDefaultValue('quality')
                   ),
                   'option_mod',//type
                   '_api_settings',//optionsgroup + "_option_mod_name"
                   'textarray'
-              );  
+              );   
+
+            $this->form->addField('html', '</li><li class="tag_image">' );
+              $this->form->addField(
+                'select',
+                  array(
+                    'label'=> 'style',
+                    'class'=>'uk-select uk-form-width-large uk-form-small',
+                    'options'=> array(
+                      array('option'=> 'vivid','value'=>'vivid'),
+                      array('option'=> 'natural','value'=>'natural')
+                    ),
+                    'name'=>$zmpaiassistant['app']->getSettingFieldName('style'),
+                    'default_value'=>$zmpaiassistant['app']->getSettingDefaultValue('style')
+                  ),
+                  'option_mod',//type
+                  '_api_settings',//optionsgroup + "_option_mod_name"
+                  'textarray'
+              );   
                                     
             $this->form->addField('html', '</li>' );
                   

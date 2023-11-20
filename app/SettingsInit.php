@@ -18,7 +18,7 @@ class SettingsInit {
       $template->setOptPra( $zmplugin['zmp-ai-assistant']->getSlug() );
       $template->setDisplayName( $zmplugin['zmp-ai-assistant']->getDisplayName() );
       $template->setTitle( __('ZMP AI Assistant', 'zmp-ai-assistant') );
-      $template->setDescr( __('This Plugin adds the AI Assistant to the edit-post-screen, to directly create/edit content and images with gpt-3, while working in WordPress editor.', 'zmp-ai-assistant') );
+      $template->setDescr( __('This Plugin adds the AI Assistant to the edit-post-screen, to directly create content and images with artificial intelligence, while working in WordPress editor.', 'zmp-ai-assistant') );
 
       $template->setVersion( $zmplugin['zmp-ai-assistant']->getConfigVersion() );
 
