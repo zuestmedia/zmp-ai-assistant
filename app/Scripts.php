@@ -22,6 +22,18 @@ class Scripts {
 
       wp_enqueue_script( 'zmp-aia-script', $zmplugin['zmp-ai-assistant']->getPluginUrl() . '/app/js/aia.js', array('zmp-js') );
 
+      wp_localize_script( 
+        'zmp-aia-script', 
+        'zmp_aia_ajax',
+        array( 
+            'url' => admin_url( 'admin-ajax.php' ), 
+            'zmp_aia_nonce_get_gpt_data' => wp_create_nonce( 'zmp_aia_nonce_get_gpt_data' ),
+            'zmp_aia_nonce_save_gpt_template' => wp_create_nonce( 'zmp_aia_nonce_save_gpt_template' ),
+            'zmp_aia_nonce_get_gpt_templates' => wp_create_nonce( 'zmp_aia_nonce_get_gpt_templates' ),
+            'zmp_aia_nonce_save_gpt_image' => wp_create_nonce( 'zmp_aia_nonce_save_gpt_image' )
+        )
+      );
+
     }
 
   }

@@ -70,7 +70,8 @@ jQuery(document).ready(function($){
 
     const zmgptdata = {      
       template_name: template_name,
-      id: postid
+      id: postid,
+      security: zmp_aia_ajax.zmp_aia_nonce_get_gpt_templates
     };
 
     var zmpajaxrequest = wp.ajax.post( "get_gpt_templates", zmgptdata );
@@ -140,7 +141,8 @@ jQuery(document).ready(function($){
       var values = $(this).serialize();
 
       const zmgptdata = {
-        valuestring: values
+        valuestring: values,
+        security: zmp_aia_ajax.zmp_aia_nonce_get_gpt_data
       };
   
       var zmpajaxrequest = wp.ajax.post( "get_gpt_data", zmgptdata );
@@ -245,7 +247,8 @@ jQuery(document).ready(function($){
       var imageurl = $(this).data('image-url');
 
       const zmgptdata = {
-        imageurl: imageurl
+        imageurl: imageurl,
+        security: zmp_aia_ajax.zmp_aia_nonce_save_gpt_image
       };
 
       var zmpajaxrequest = wp.ajax.post( "save_gpt_image", zmgptdata );
@@ -293,7 +296,8 @@ jQuery(document).ready(function($){
 
       const zmgptdata = {
         template_data: template_data,
-        form_data: form_data
+        form_data: form_data,
+        security: zmp_aia_ajax.zmp_aia_nonce_save_gpt_template
       };
   
       var zmpajaxrequest = wp.ajax.post( "save_gpt_template", zmgptdata );
@@ -382,7 +386,7 @@ jQuery(document).ready(function($){
 
   }
 
-  //by id eg: "zmp-aia-input-prompt" and "zmp-aia-edit-result"
+  //by id eg: "zmp-aia-input-prompt" 
   function zmpaiagetSelectedTextbyID(id){
     // Obtain the object reference for the <textarea>
     var txtarea = document.getElementById(id);
@@ -403,16 +407,9 @@ jQuery(document).ready(function($){
   function zmpaiagetSelectedText(){
 
     var prompt_selection = zmpaiagetSelectedTextbyID("zmp-aia-input-prompt");
-    var edit_result_selection = zmpaiagetSelectedTextbyID("zmp-aia-edit-result");
-
-    //only 1 selection is possible at once...
 
     if(prompt_selection){
       return prompt_selection;
-    }
-
-    if(edit_result_selection){
-      return edit_result_selection;
     }
 
   }

@@ -35,60 +35,64 @@ class APICalls {
 
   public function AjaxResponse_save_gpt_image(){
 
-    if( isset($_POST['imageurl']) && !empty($_POST['imageurl']) && filter_var($_POST['imageurl'], FILTER_VALIDATE_URL) !== false){
-          
-      // it allows us to use download_url() and wp_handle_sideload() functions
-      require_once( ABSPATH . 'wp-admin/includes/file.php' );
+    if( wp_verify_nonce( $_POST['security'], 'zmp_aia_nonce_save_gpt_image' ) ){
 
-      // download to temp dir
-      $temp_file = download_url( $_POST['imageurl'] );
+      if( isset($_POST['imageurl']) && !empty($_POST['imageurl']) && filter_var($_POST['imageurl'], FILTER_VALIDATE_URL) !== false){
+            
+        // it allows us to use download_url() and wp_handle_sideload() functions
+        require_once( ABSPATH . 'wp-admin/includes/file.php' );
 
-      if( ! is_wp_error( $temp_file ) ) {
+        // download to temp dir
+        $temp_file = download_url( $_POST['imageurl'] );
 
-        // move the temp file into the uploads directory
-        $file = array(
-          //'name'     => basename( $_POST['imageurl'] ),
-          'name'     => 'gpt-dall-e-'.date('Y-m-d-H-i-s').'.png',
-          //'type'     => mime_content_type( $temp_file ),
-          'type'     => 'image/png',
-          'tmp_name' => $temp_file,
-          'size'     => filesize( $temp_file ),
-        );
+        if( ! is_wp_error( $temp_file ) ) {
 
-        $sideload = wp_handle_sideload(
-          $file,
-          array(
-            'test_form'   => false // no needs to check 'action' parameter
-          )
-        );
-
-        if( !isset( $sideload[ 'error' ] ) ) {
-
-          // it is time to add our uploaded image into WordPress media library
-          $attachment_id = wp_insert_attachment(
-            array(
-              'guid'           => $sideload[ 'url' ],
-              'post_mime_type' => $sideload[ 'type' ],
-              //'post_title'     => basename( $sideload[ 'file' ] ),
-              'post_title'     => 'gpt-dall-e-'.date('Y-m-d-H-i-s').'.png',
-              'post_content'   => '',
-              'post_status'    => 'inherit',
-            ),
-            $sideload[ 'file' ]
+          // move the temp file into the uploads directory
+          $file = array(
+            //'name'     => basename( $_POST['imageurl'] ),
+            'name'     => 'gpt-dall-e-'.date('Y-m-d-H-i-s').'.png',
+            //'type'     => mime_content_type( $temp_file ),
+            'type'     => 'image/png',
+            'tmp_name' => $temp_file,
+            'size'     => filesize( $temp_file ),
           );
 
-          if( ! is_wp_error( $attachment_id ) && $attachment_id ) {
-            
-            // update medatata, regenerate image sizes
-            require_once( ABSPATH . 'wp-admin/includes/image.php' );
+          $sideload = wp_handle_sideload(
+            $file,
+            array(
+              'test_form'   => false // no needs to check 'action' parameter
+            )
+          );
 
-            wp_update_attachment_metadata(
-              $attachment_id,
-              wp_generate_attachment_metadata( $attachment_id, $sideload[ 'file' ] )
+          if( !isset( $sideload[ 'error' ] ) ) {
+
+            // it is time to add our uploaded image into WordPress media library
+            $attachment_id = wp_insert_attachment(
+              array(
+                'guid'           => $sideload[ 'url' ],
+                'post_mime_type' => $sideload[ 'type' ],
+                //'post_title'     => basename( $sideload[ 'file' ] ),
+                'post_title'     => 'gpt-dall-e-'.date('Y-m-d-H-i-s').'.png',
+                'post_content'   => '',
+                'post_status'    => 'inherit',
+              ),
+              $sideload[ 'file' ]
             );
 
-            //return $attachment_id;
-            wp_send_json_success($attachment_id);
+            if( ! is_wp_error( $attachment_id ) && $attachment_id ) {
+              
+              // update medatata, regenerate image sizes
+              require_once( ABSPATH . 'wp-admin/includes/image.php' );
+
+              wp_update_attachment_metadata(
+                $attachment_id,
+                wp_generate_attachment_metadata( $attachment_id, $sideload[ 'file' ] )
+              );
+
+              //return $attachment_id;
+              wp_send_json_success($attachment_id);
+
+            }
 
           }
 
@@ -104,30 +108,34 @@ class APICalls {
 
   public function AjaxResponse_save_gpt_template(){
 
-    if( isset($_POST['template_data']) && !empty($_POST['template_data']) ){
+    if( wp_verify_nonce( $_POST['security'], 'zmp_aia_nonce_save_gpt_template' ) ){
 
-      parse_str($_POST['template_data'], $template_data);
+      if( isset($_POST['template_data']) && !empty($_POST['template_data']) ){
 
-      $template_name = $template_data['zmp-aia-save-template-name'];
+        parse_str($_POST['template_data'], $template_data);
 
-      if( preg_match('/^[A-Za-z0-9_\-\s]+$/', $template_name) ){
+        $template_name = $template_data['zmp-aia-save-template-name'];
 
-        if( isset($_POST['form_data']) && !empty($_POST['form_data']) ){
+        if( preg_match('/^[A-Za-z0-9_\-\s]+$/', $template_name) ){
 
-          global $zmpaiassistant;
-          $save = $zmpaiassistant['app']->saveGPTTemplate($template_name,$_POST['form_data']);
-  
-          if($save == true){
-  
-            wp_send_json_success($template_name);
-  
-          }
-  
-        }  
+          if( isset($_POST['form_data']) && !empty($_POST['form_data']) ){
 
-      }
+            global $zmpaiassistant;
+            $save = $zmpaiassistant['app']->saveGPTTemplate($template_name,$_POST['form_data']);
+    
+            if($save == true){
+    
+              wp_send_json_success($template_name);
+    
+            }
+    
+          }  
 
-    } 
+        }        
+
+      } 
+
+    }
 
     wp_send_json_error();
 
@@ -135,71 +143,75 @@ class APICalls {
 
   public function AjaxResponse_get_gpt_templates(){
 
-    $template_name = false;
-    if( isset($_POST['template_name']) && !empty($_POST['template_name']) ){
+    if( wp_verify_nonce( $_POST['security'], 'zmp_aia_nonce_get_gpt_templates' ) ){
 
-      if( preg_match('/^[A-Za-z0-9_\-\s]+$/', $_POST['template_name']) ){
+      $template_name = false;
+      if( isset($_POST['template_name']) && !empty($_POST['template_name']) ){
 
-        $template_name = $_POST['template_name'];
+        if( preg_match('/^[A-Za-z0-9_\-\s]+$/', $_POST['template_name']) ){
+
+          $template_name = $_POST['template_name'];
+
+        }
+
+      } 
+      
+      $id = 0;
+      if( isset($_POST['id']) && is_numeric($_POST['id']) == true ){
+
+        $id = $_POST['id'];
+
+      } 
+
+      if( $template_name == false ){//works with false or 0 --> gets template from default settings
+
+        global $zmpaiassistant;
+
+        $template_name = $zmpaiassistant['app']->getDefaultTemplate();
 
       }
 
-    } 
-    
-    $id = 0;
-    if( isset($_POST['id']) && is_numeric($_POST['id']) == true ){
+      if( $template_name != 'default' ){
 
-      $id = $_POST['id'];
+        global $zmpaiassistant;
 
-    } 
+        $templates_array = $zmpaiassistant['app']->getGPTTemplates();
 
-    if( $template_name == false ){//works with false or 0 --> gets template from default settings
+        if(array_key_exists( $template_name, $templates_array )){
 
-      global $zmpaiassistant;
+          parse_str( $templates_array[$template_name], $output );
 
-      $template_name = $zmpaiassistant['app']->getDefaultTemplate();
+          $new_output = array();
+          foreach($output as $key => $value){
+            $key = str_replace( 'zmp-aia-input-', '', $key );
+            $new_output[$key] = $value;
+          }
 
-    }
+          $result = $new_output;
 
-    if( $template_name != 'default' ){
+        } else {
 
-      global $zmpaiassistant;
+          //get default settings
+          $result = $this->getDefaultSettingsArray();
 
-      $templates_array = $zmpaiassistant['app']->getGPTTemplates();
-
-      if(array_key_exists( $template_name, $templates_array )){
-
-        parse_str( $templates_array[$template_name], $output );
-
-        $new_output = array();
-        foreach($output as $key => $value){
-          $key = str_replace( 'zmp-aia-input-', '', $key );
-          $new_output[$key] = $value;
-        }
-
-        $result = $new_output;
+        }      
 
       } else {
 
         //get default settings
         $result = $this->getDefaultSettingsArray();
 
-      }      
+      }
 
-    } else {
+      if(!empty($result)){
 
-      //get default settings
-      $result = $this->getDefaultSettingsArray();
+        $result = $this->prepareTemplateData($result,$id,$template_name);
 
-    }
+        $json = json_encode( $result );
 
-    if(!empty($result)){
+        wp_send_json_success( $json );
 
-      $result = $this->prepareTemplateData($result,$id,$template_name);
-
-      $json = json_encode( $result );
-
-      wp_send_json_success( $json );
+      }
 
     }
 
@@ -248,60 +260,64 @@ class APICalls {
 
   public function AjaxResponse_get_gpt_data() {
 
-
     $api_response = NULL; //returns error if stays null or has wp_error check at the end...
     $body = NULL;
-    //parse query string to array
-    if( isset($_POST['valuestring']) && !empty($_POST['valuestring']) ){
 
-      parse_str($_POST['valuestring'], $output);     
+    if( wp_verify_nonce( $_POST['security'], 'zmp_aia_nonce_get_gpt_data' ) ){
 
-      $type = NULL;
-      if($output['zmp-aia-input-mode'] == 'completion'){
-  
-        $type = 'completion';
+      //parse query string to array
+      if( isset($_POST['valuestring']) && !empty($_POST['valuestring']) ){
 
-        $body = array(
-          'model' => $output['zmp-aia-input-model'],//required
-          'max_tokens' => intval( $output['zmp-aia-input-max_tokens'] ),      
-          'temperature' => intval( $output['zmp-aia-input-temperature']),      
-          'top_p' => intval( $output['zmp-aia-input-top_p']),        
-          'presence_penalty' => floatval($output['zmp-aia-input-presence_penalty']),      
-          'frequency_penalty' => floatval($output['zmp-aia-input-frequency_penalty']),      
-        );
-  
-        // only set if not '' 
-        if($output['zmp-aia-input-prompt']){
-          $body['messages'] = array(
-            array(
-              'role' => 'user',
-              'content' => $output['zmp-aia-input-prompt']
-            )
+        parse_str($_POST['valuestring'], $output);          
+
+        $type = NULL;
+        if($output['zmp-aia-input-mode'] == 'completion'){
+    
+          $type = 'completion';
+
+          $body = array(
+            'model' => $output['zmp-aia-input-model'],//required
+            'max_tokens' => intval( $output['zmp-aia-input-max_tokens'] ),      
+            'temperature' => intval( $output['zmp-aia-input-temperature']),      
+            'top_p' => intval( $output['zmp-aia-input-top_p']),        
+            'presence_penalty' => floatval($output['zmp-aia-input-presence_penalty']),      
+            'frequency_penalty' => floatval($output['zmp-aia-input-frequency_penalty']),      
           );
-        }
-        if($output['zmp-aia-input-stop']){
-          $body['stop'] = $output['zmp-aia-input-stop'];
-        }
-  
-        $api_response = $this->postrequest( $body, 'https://api.openai.com/v1/chat/completions' );
-  
-      }  elseif($output['zmp-aia-input-mode'] == 'image'){
-  
-        $type = 'image';
-  
-        $body = array(
-          'prompt' => $output['zmp-aia-input-imageprompt'],//required
-          'model' => 'dall-e-3',   //always uses dall-e-3
-          'size' => $output['zmp-aia-input-size'],   
-          'quality' => $output['zmp-aia-input-quality'],   
-          'style' => $output['zmp-aia-input-style'],   
-        );
-  
-        $api_response = $this->postrequest( $body, 'https://api.openai.com/v1/images/generations' );
-  
-      } 
+    
+          // only set if not '' 
+          if($output['zmp-aia-input-prompt']){
+            $body['messages'] = array(
+              array(
+                'role' => 'user',
+                'content' => $output['zmp-aia-input-prompt']
+              )
+            );
+          }
+          if($output['zmp-aia-input-stop']){
+            $body['stop'] = $output['zmp-aia-input-stop'];
+          }
+    
+          $api_response = $this->postrequest( $body, 'https://api.openai.com/v1/chat/completions' );
+    
+        }  elseif($output['zmp-aia-input-mode'] == 'image'){
+    
+          $type = 'image';
+    
+          $body = array(
+            'prompt' => $output['zmp-aia-input-imageprompt'],//required
+            'model' => 'dall-e-3',   //always uses dall-e-3
+            'size' => $output['zmp-aia-input-size'],   
+            'quality' => $output['zmp-aia-input-quality'],   
+            'style' => $output['zmp-aia-input-style'],   
+          );
+    
+          $api_response = $this->postrequest( $body, 'https://api.openai.com/v1/images/generations' );
+    
+        }    
 
-    }   
+      } 
+      
+    }
 
     $this->checkPostRequest($api_response,$type,$body);
 

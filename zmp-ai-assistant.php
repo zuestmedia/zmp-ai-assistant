@@ -5,9 +5,11 @@
   Description: This plugin helps webmasters to create content and images with artificial intelligence
   Author: zuestmedia
   Author URI: https://zuestmedia.com/
-  Version: 1.0.0
+  Version: 1.0.1
   Text Domain: zmp-ai-assistant
   Domain Path: /languages
+  License: GPL v2 or later
+  License URI: https://www.gnu.org/licenses/gpl-2.0.html
   ZMDLID: jfwo0j320ivjvn0432nfg0sweri92fhvbnws
   ZMUPDAPI: zm
   */

@@ -39,7 +39,13 @@ class Init {
     }
 
     public function initPluginApp(){
-      add_action('init', array( $this, 'PluginAppStart' ));
+
+      if(is_admin()) {
+
+        add_action('init', array( $this, 'PluginAppStart' ));
+
+      }
+
     }
 
     public function PluginAppStart(){
