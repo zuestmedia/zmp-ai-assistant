@@ -138,10 +138,10 @@ jQuery(document).ready(function($){
       zmpaiaLoadingScreen($);
 
       // Get all the forms elements and their values in one step
-      var values = $(this).serialize();
+      var values = $(this).serializeArray();
 
       const zmgptdata = {
-        valuestring: values,
+        values: values,
         security: zmp_aia_ajax.zmp_aia_nonce_get_gpt_data
       };
   
@@ -291,8 +291,8 @@ jQuery(document).ready(function($){
       zmpaiaLoadingScreen($);
 
       // Get all the forms elements and their values in one step
-      var template_data = $(this).serialize();
-      var form_data = $('#zmp-aia-form').serialize();
+      var template_data = $(this).serializeArray();
+      var form_data = $('#zmp-aia-form').serializeArray();
 
       const zmgptdata = {
         template_data: template_data,

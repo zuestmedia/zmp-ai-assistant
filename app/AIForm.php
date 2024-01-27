@@ -200,8 +200,7 @@ class AIForm {
                   </li>
                 </ul>
               </div>
-            </div>     
-            <?php wp_nonce_field( 'zmp_aia_nonce' ); ?>       
+            </div>      
             <button type="submit" form="zmp-aia-form" value="Submit" id="zmp-aia-button-send" class="uk-button uk-button-primary uk-align-left uk-margin-top uk-margin-remove-bottom"><?php echo esc_html__( 'Submit', 'zmp-ai-assistant' ); ?></button>
             <button id="zmp-aia-button-reset" class="uk-button uk-button-muted uk-align-left uk-margin-top uk-margin-remove-bottom" type="button"><?php echo esc_html__( 'Reset', 'zmp-ai-assistant' ); ?></button>
             <div class="uk-align-left uk-margin-top uk-margin-remove-bottom" style="line-height: 40px;">
@@ -255,7 +254,6 @@ class AIForm {
                       <input name="zmp-aia-save-template-name" required class="uk-input uk-form-small" type="text" placeholder="Template name" style="border:none;border-bottom-right-radius:unset;border-top-right-radius:unset;">
                     </div>
                     <div>
-                      <?php wp_nonce_field( 'zmp_aia_nonce' ); ?>
                       <button type="submit" form="zmp-aia-save-template" value="Save" class="uk-button uk-button-muted uk-button-small uk-align-left"><?php echo esc_html__( 'Save', 'zmp-ai-assistant' ); ?></button>
                     </div>
                   </div>

@@ -93,7 +93,7 @@ class ErrorMenu {
    */
   public function getMenuPage()  {
 
-      echo $this->menu_page;
+      echo '<div class="wrap"><h1>'.esc_html( $errorpage->getDisplayName() ).'</h1><div class="error notice"><p><strong>Error:</strong> '.esc_html( $errorpage->getDisplayName() ).' is an addon of <a>ZMPlugin</a>. Please install ZMPlugin to use this addon!</p></div></div>';
 
   }
   /**

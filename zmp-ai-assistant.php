@@ -5,7 +5,7 @@
   Description: This plugin helps webmasters to create content and images with artificial intelligence
   Author: zuestmedia
   Author URI: https://zuestmedia.com/
-  Version: 1.0.1
+  Version: 1.0.2
   Text Domain: zmp-ai-assistant
   Domain Path: /languages
   License: GPL v2 or later
@@ -68,7 +68,6 @@ if ( ! function_exists( 'zmp_ai_assistant_init' ) ) {
       require_once 'app/ErrorMenu.php';//because autoloader not available!
       $errorpage = new \ZMP\AIAssistant\ErrorMenu( $zmpaiassistant['plugin_basename'] );
       $errorpage->setDisplayName( 'ZMP AI Assistant' );
-      $errorpage->setMenuPage('<div class="wrap"><h1>'.$errorpage->getDisplayName().'</h1><div class="error notice"><p><strong>Error:</strong> '.$errorpage->getDisplayName().' is an addon of <a>ZMPlugin</a>. Please install ZMPlugin to use this addon!</p></div></div>');
       $errorpage->addMenuPage();
 
       return;

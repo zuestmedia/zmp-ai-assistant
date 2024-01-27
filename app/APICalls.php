@@ -35,21 +35,23 @@ class APICalls {
 
   public function AjaxResponse_save_gpt_image(){
 
-    if( wp_verify_nonce( $_POST['security'], 'zmp_aia_nonce_save_gpt_image' ) ){
+    if( isset($_POST['security']) && wp_verify_nonce( $_POST['security'], 'zmp_aia_nonce_save_gpt_image' ) ){
 
       if( isset($_POST['imageurl']) && !empty($_POST['imageurl']) && filter_var($_POST['imageurl'], FILTER_VALIDATE_URL) !== false){
+
+        $imageurl = sanitize_url($_POST['imageurl']);
             
         // it allows us to use download_url() and wp_handle_sideload() functions
         require_once( ABSPATH . 'wp-admin/includes/file.php' );
 
         // download to temp dir
-        $temp_file = download_url( $_POST['imageurl'] );
+        $temp_file = download_url( $imageurl );
 
         if( ! is_wp_error( $temp_file ) ) {
 
           // move the temp file into the uploads directory
           $file = array(
-            //'name'     => basename( $_POST['imageurl'] ),
+            //'name'     => basename( $imageurl ),
             'name'     => 'gpt-dall-e-'.date('Y-m-d-H-i-s').'.png',
             //'type'     => mime_content_type( $temp_file ),
             'type'     => 'image/png',
@@ -108,11 +110,12 @@ class APICalls {
 
   public function AjaxResponse_save_gpt_template(){
 
-    if( wp_verify_nonce( $_POST['security'], 'zmp_aia_nonce_save_gpt_template' ) ){
+    if( isset($_POST['security']) && wp_verify_nonce( $_POST['security'], 'zmp_aia_nonce_save_gpt_template' ) ){
 
       if( isset($_POST['template_data']) && !empty($_POST['template_data']) ){
 
-        parse_str($_POST['template_data'], $template_data);
+        //sanitize post array values
+        $template_data = $this->sanitizeAndreorderFormInputs($_POST['template_data']);
 
         $template_name = $template_data['zmp-aia-save-template-name'];
 
@@ -120,8 +123,11 @@ class APICalls {
 
           if( isset($_POST['form_data']) && !empty($_POST['form_data']) ){
 
+            //sanitize post array values
+            $form_data = $this->sanitizeAndreorderFormInputs($_POST['form_data']);
+
             global $zmpaiassistant;
-            $save = $zmpaiassistant['app']->saveGPTTemplate($template_name,$_POST['form_data']);
+            $save = $zmpaiassistant['app']->saveGPTTemplate($template_name,$form_data);
     
             if($save == true){
     
@@ -143,14 +149,16 @@ class APICalls {
 
   public function AjaxResponse_get_gpt_templates(){
 
-    if( wp_verify_nonce( $_POST['security'], 'zmp_aia_nonce_get_gpt_templates' ) ){
+    if( isset($_POST['security']) && wp_verify_nonce( $_POST['security'], 'zmp_aia_nonce_get_gpt_templates' ) ){
 
       $template_name = false;
       if( isset($_POST['template_name']) && !empty($_POST['template_name']) ){
 
-        if( preg_match('/^[A-Za-z0-9_\-\s]+$/', $_POST['template_name']) ){
+        $san_template_name = sanitize_text_field($_POST['template_name']);
 
-          $template_name = $_POST['template_name'];
+        if( preg_match('/^[A-Za-z0-9_\-\s]+$/', $san_template_name) ){
+
+          $template_name = $san_template_name;
 
         }
 
@@ -159,7 +167,9 @@ class APICalls {
       $id = 0;
       if( isset($_POST['id']) && is_numeric($_POST['id']) == true ){
 
-        $id = $_POST['id'];
+        $san_id = sanitize_text_field($_POST['id']);
+
+        $id = $san_id;
 
       } 
 
@@ -179,12 +189,30 @@ class APICalls {
 
         if(array_key_exists( $template_name, $templates_array )){
 
-          parse_str( $templates_array[$template_name], $output );
+          $output = $templates_array[$template_name];
+
+          //old templates are saved as strings
+          if(!is_array($output)){
+
+            $output = array();
+
+            parse_str( $templates_array[$template_name], $output );
+
+          }
 
           $new_output = array();
           foreach($output as $key => $value){
+
+            if($key == 'zmp-aia-input-prompt' || $key == 'zmp-aia-input-imageprompt'){
+
+              $value = stripslashes($value);
+
+            }
+
             $key = str_replace( 'zmp-aia-input-', '', $key );
             $new_output[$key] = $value;
+
+            
           }
 
           $result = $new_output;
@@ -263,12 +291,12 @@ class APICalls {
     $api_response = NULL; //returns error if stays null or has wp_error check at the end...
     $body = NULL;
 
-    if( wp_verify_nonce( $_POST['security'], 'zmp_aia_nonce_get_gpt_data' ) ){
+    if( isset($_POST['security']) && wp_verify_nonce( $_POST['security'], 'zmp_aia_nonce_get_gpt_data' ) ){
 
-      //parse query string to array
-      if( isset($_POST['valuestring']) && !empty($_POST['valuestring']) ){
+      if( isset($_POST['values']) && is_array($_POST['values']) ){
 
-        parse_str($_POST['valuestring'], $output);          
+        //sanitize post array values
+        $output = $this->sanitizeAndreorderFormInputs($_POST['values']);
 
         $type = NULL;
         if($output['zmp-aia-input-mode'] == 'completion'){
@@ -436,6 +464,28 @@ class APICalls {
     }
 
     return $headers;
+
+  }  
+
+  public function sanitizeAndreorderFormInputs($values_array){
+
+    $sanitized_array = array();
+
+    foreach($values_array as $row){
+
+      if($row['name'] == 'zmp-aia-input-prompt' || $row['name'] == 'zmp-aia-input-imageprompt'){
+
+        $sanitized_array[sanitize_key($row['name'])] = sanitize_textarea_field($row['value']);
+
+      } else {
+
+        $sanitized_array[sanitize_key($row['name'])] = sanitize_text_field($row['value']);
+
+      }
+
+    }
+
+    return $sanitized_array;
 
   }
 

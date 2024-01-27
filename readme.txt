@@ -1,6 +1,6 @@
 === ZMP AI Assistant ===
 Contributors: zuestmedia
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 Tags: gpt, open ai, chat gpt, content generator, image generator, zmplugin
 Requires at least: 4.7
 Tested up to: 6.4
@@ -37,6 +37,10 @@ To install ZMP AI Assistant, go to Dashboard >> Plugins >> Add new. Then enter "
 No. ZMP AI Assistant is an extension of ZMPlugin.
 
 == Changelog ==
+
+= 1.0.2 =
+* Fix: Sanitizing & validating post data
+* Fix: Nonce form inputs are defined in js (ajax calls)
 
 = 1.0.1 =
 * Update: added nonce to ajax post calls
