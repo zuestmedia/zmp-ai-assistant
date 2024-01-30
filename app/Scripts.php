@@ -20,7 +20,11 @@ class Scripts {
       $zmplugin['admin_scripts']->AdminAssets();
       //$zmplugin['admin_scripts']->EnqueueJsArray();
 
-      wp_enqueue_script( 'zmp-aia-script', $zmplugin['zmp-ai-assistant']->getPluginUrl() . '/app/js/aia.js', array('zmp-js') );
+      global $zmpaiassistant;
+
+      $config = $zmpaiassistant['default_config'];
+
+      wp_enqueue_script( 'zmp-aia-script', $zmplugin['zmp-ai-assistant']->getPluginUrl() . '/app/js/aia.js', array('zmp-js'), $config->version );
 
       wp_localize_script( 
         'zmp-aia-script', 

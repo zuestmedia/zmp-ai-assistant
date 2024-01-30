@@ -39,7 +39,7 @@ class Settings {
                 'label'=> __('API Key', 'zmp-ai-assistant'),
                 'class'=>'uk-input uk-form-width-large',
                 'name'=>$zmpaiassistant['app']->getCredentialsFieldName('api_key'),
-                'default_value'=>$zmpaiassistant['app']->getCredentialsDefaultValue()
+                'default_value'=>$zmpaiassistant['app']->getCredentialsDefaultValue('api_key')
               ),
               'option_mod',//type
               '_api_credentials',//optionsgroup + "_option_mod_name"
@@ -53,7 +53,7 @@ class Settings {
                 'label'=> __('Organization ID (optional)', 'zmp-ai-assistant'),
                 'class'=>'uk-input uk-form-width-large',
                 'name'=>$zmpaiassistant['app']->getCredentialsFieldName('org_id'),
-                'default_value'=>$zmpaiassistant['app']->getCredentialsDefaultValue()
+                'default_value'=>$zmpaiassistant['app']->getCredentialsDefaultValue('org_id')
               ),
               'option_mod',//type
               '_api_credentials',//optionsgroup + "_option_mod_name"
@@ -70,7 +70,7 @@ class Settings {
             '<div uk-filter="target: .js-filter">
               <div>
                 <ul class="uk-subnav uk-subnav-pill" uk-margin>
-                  <li class="uk-active" uk-filter-control=".tag_completion"><a href="#">'.__('Completion','zmp-ai-assistant').'</a></li>
+                  <li class="uk-active" uk-filter-control=".tag_completion"><a href="#">'.__('Chat','zmp-ai-assistant').'</a></li>
                   <li uk-filter-control=".tag_image"><a href="#">'.__('Image','zmp-ai-assistant').'</a></li>
                 </ul>
               </div>          
@@ -78,7 +78,21 @@ class Settings {
 
             $this->form->addField('html', '<li class="tag_completion">' );
 
-              $this->form->addField('html', '<h2>'.__('Completion','zmp-ai-assistant').'</h2>' );
+              $this->form->addField('html', '<h2>'.__('Chat','zmp-ai-assistant').'</h2>' );
+
+              $this->form->addField(
+                'input',
+                  array(
+                    'type'=> 'text',
+                    'label'=> 'system_message',
+                    'class'=>'uk-input uk-form-width-large',
+                    'name'=>$zmpaiassistant['app']->getCredentialsFieldName('system_message'),
+                    'default_value'=>$zmpaiassistant['app']->getCredentialsDefaultValue('system_message')
+                  ),
+                  'option_mod',//type
+                  '_api_credentials',//optionsgroup + "_option_mod_name"
+                  'sanitizearray'
+              );
 
               $this->form->addField(
                 'textarea',
@@ -134,7 +148,7 @@ class Settings {
                     'type'=> 'number',
                     'step'=> '1',
                     'min'=> '1',
-                    'max'=> '4096',
+                    //'max'=> '4096',
                     'label'=> 'max_tokens',
                     'class'=>'uk-input uk-form-width-large uk-form-small',
                     'name'=>$zmpaiassistant['app']->getSettingFieldName('max_tokens'),
@@ -152,7 +166,7 @@ class Settings {
                     'type'=> 'number',
                     'step'=> '0.1',
                     'min'=> '0',
-                    'max'=> '1',
+                    'max'=> '2',
                     'label'=> 'temperature',
                     'class'=>'uk-input uk-form-width-large uk-form-small',
                     'name'=>$zmpaiassistant['app']->getSettingFieldName('temperature'),

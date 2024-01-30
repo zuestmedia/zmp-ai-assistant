@@ -18,8 +18,16 @@ jQuery(document).ready(function($){
 
     UIkit.util.on('#zmp-aia-filtered', 'afterFilter', function () {
       zmpaiasetModeHiddenInput($);
-    });  
+    });    
 
+  }
+
+  function zmpaiaautoscrollchatdown($){
+    //auto scroll down
+    var zmpaiachatautoscroll = $('#zmp-aia-div-chat');
+    if(zmpaiachatautoscroll.length){
+      zmpaiachatautoscroll.scrollTop(zmpaiachatautoscroll[0].scrollHeight - zmpaiachatautoscroll.height());
+    }
   }
 
   function zmpaiasetModeHiddenInput($){
@@ -51,6 +59,10 @@ jQuery(document).ready(function($){
       //so needs upper function! its better, because different value (default != 0) is possible...)
       //on change could be triggered with this: .trigger('change');
       $('#zmp-aia-template').val('default');
+
+      $('#zmp-aia-save-template-name').val('');
+      $('#zmp-aia-div-chat').text('');
+      $('#zmp-aia-hidden-chat-id').val(Math.floor(Date.now() / 1000));
 
     });    
 
@@ -142,6 +154,7 @@ jQuery(document).ready(function($){
 
       const zmgptdata = {
         values: values,
+        chatid: $('#zmp-aia-hidden-chat-id').val(),
         security: zmp_aia_ajax.zmp_aia_nonce_get_gpt_data
       };
   
@@ -193,33 +206,42 @@ jQuery(document).ready(function($){
         timeout: 2000
       });
 
+    } else {
+
+      if(response['type'] == 'completion'){
+
+        $('#zmp-aia-div-chat').text($('#zmp-aia-div-chat').text() + '𝗨𝘀𝗲𝗿\r\n-----\r\n' + $('#zmp-aia-input-prompt').val());
+        zmpaiaautoscrollchatdown($);
+
+        $.each(apiresponse['choices'], function( index, value ) {
+
+          $('#zmp-aia-div-chat').text($('#zmp-aia-div-chat').text() + '\r\n\r\n𝗔𝗜 𝗔𝘀𝘀𝗶𝘀𝘁𝗮𝗻𝘁\r\n-------------\r\n' + apiresponse['choices'][index]['message']['content'] + '\r\n\r\n');
+          zmpaiaautoscrollchatdown($);
+
+          $('#zmp-aia-input-prompt').val('');
+
+          if(apiresponse['choices'][index]['finish_reason'] !== 'stop'){
+
+            zmpaiaWarnings(apiresponse['choices'][index]['finish_reason']);
+
+          }
+
+        });
+
+      } else if(response['type'] == 'image'){
+
+        $('#zmp-aia-image-result').empty(); //remove old results, so no errors with init image upload...
+
+        $.each(apiresponse['data'], function( index, value ) {
+          $('#zmp-aia-image-result').append('<div><img style="width:100%;" src="' + apiresponse['data'][index]['url'] + '" /><a href="#" class="zmp-aia-image-upload" data-image-url="' + apiresponse['data'][index]['url'] + '">Upload to media library</a></div>');
+        });
+
+        //init image upload
+        zmpaiaImageUpload($);
+
+      } 
+
     }
-
-    if(response['type'] == 'completion'){
-
-      $.each(apiresponse['choices'], function( index, value ) {
-        $('#zmp-aia-input-prompt').val($('#zmp-aia-input-prompt').val() + ' ' + apiresponse['choices'][index]['message']['content']);
-
-        if(apiresponse['choices'][index]['finish_reason'] !== 'stop'){
-
-          zmpaiaWarnings(apiresponse['choices'][index]['finish_reason']);
-
-        }
-
-      });
-
-    } else if(response['type'] == 'image'){
-
-      $('#zmp-aia-image-result').empty(); //remove old results, so no errors with init image upload...
-
-      $.each(apiresponse['data'], function( index, value ) {
-        $('#zmp-aia-image-result').append('<div><img style="width:100%;" src="' + apiresponse['data'][index]['url'] + '" /><a href="#" class="zmp-aia-image-upload" data-image-url="' + apiresponse['data'][index]['url'] + '">Upload to media library</a></div>');
-      });
-
-      //init image upload
-      zmpaiaImageUpload($);
-
-    } 
 
   }
 
@@ -316,6 +338,9 @@ jQuery(document).ready(function($){
         //chose new value
         $('#zmp-aia-template').val(response);
 
+        //remove template name
+        $('#zmp-aia-save-template-name').val('');
+
       }); 
 
       zmpajaxrequest.fail(function(response) {
@@ -386,7 +411,8 @@ jQuery(document).ready(function($){
 
   }
 
-  //by id eg: "zmp-aia-input-prompt" 
+  //only works with textarea, use below for div selections / whole document
+  //by id eg: "zmp-aia-div-chat" 
   function zmpaiagetSelectedTextbyID(id){
     // Obtain the object reference for the <textarea>
     var txtarea = document.getElementById(id);
@@ -404,9 +430,18 @@ jQuery(document).ready(function($){
 
   }
 
+  //select from whole document
+  function zmpaiagetSelectedTextinHTML(id) {
+    var text = "";
+    if (typeof document.getSelection != "undefined") {
+      text = document.getSelection().toString();
+    }
+    return text;
+  }
+
   function zmpaiagetSelectedText(){
 
-    var prompt_selection = zmpaiagetSelectedTextbyID("zmp-aia-input-prompt");
+    var prompt_selection = zmpaiagetSelectedTextinHTML("zmp-aia-div-chat");
 
     if(prompt_selection){
       return prompt_selection;

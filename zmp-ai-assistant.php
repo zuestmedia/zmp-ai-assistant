@@ -2,10 +2,10 @@
   /*
   Plugin Name: ZMP AI Assistant
   Plugin URI: https://zuestmedia.com/plugins/
-  Description: This plugin helps webmasters to create content and images with artificial intelligence
+  Description: The AI Assistant helps webmasters to create content and images with artificial intelligence
   Author: zuestmedia
   Author URI: https://zuestmedia.com/
-  Version: 1.0.2
+  Version: 1.0.3
   Text Domain: zmp-ai-assistant
   Domain Path: /languages
   License: GPL v2 or later

@@ -290,6 +290,8 @@ class APICalls {
 
     $api_response = NULL; //returns error if stays null or has wp_error check at the end...
     $body = NULL;
+    $type = NULL;
+    $chatid = NULL;
 
     if( isset($_POST['security']) && wp_verify_nonce( $_POST['security'], 'zmp_aia_nonce_get_gpt_data' ) ){
 
@@ -297,8 +299,13 @@ class APICalls {
 
         //sanitize post array values
         $output = $this->sanitizeAndreorderFormInputs($_POST['values']);
+        
+        if( isset($_POST['chatid']) && is_numeric($_POST['chatid']) ) {
 
-        $type = NULL;
+          $chatid = sanitize_text_field($_POST['chatid']);
+
+        }
+        
         if($output['zmp-aia-input-mode'] == 'completion'){
     
           $type = 'completion';
@@ -314,12 +321,34 @@ class APICalls {
     
           // only set if not '' 
           if($output['zmp-aia-input-prompt']){
-            $body['messages'] = array(
-              array(
-                'role' => 'user',
-                'content' => $output['zmp-aia-input-prompt']
-              )
+
+            $message = array(
+              'role' => 'user',
+              'content' => $output['zmp-aia-input-prompt']
             );
+
+            //save conversation to db (temporary)
+            if($chatid){
+              global $zmpaiassistant;
+              $messages = $zmpaiassistant['app']->saveGPTConversation($chatid,$message);
+            }
+
+            //prepends the system_message to every request if there is one
+            global $zmpaiassistant;
+            $system_message = $zmpaiassistant['app']->getCredentials('system_message');
+            if($system_message){
+
+              $system_message_array = array(
+                'role' => 'system',
+                'content' => $system_message
+              );
+              
+              array_unshift($messages, $system_message_array);
+
+            }
+
+            $body['messages'] = $messages;
+
           }
           if($output['zmp-aia-input-stop']){
             $body['stop'] = $output['zmp-aia-input-stop'];
@@ -347,7 +376,7 @@ class APICalls {
       
     }
 
-    $this->checkPostRequest($api_response,$type,$body);
+    $this->checkPostRequest($api_response,$type,$body,$chatid);
 
   }
 
@@ -375,7 +404,7 @@ class APICalls {
 
   }
 
-  public function checkPostRequest($response,$type,$body){
+  public function checkPostRequest($response,$type,$body,$chatid){
 
     if( is_wp_error( $response ) || empty($response) ){
 
@@ -385,8 +414,14 @@ class APICalls {
 
       $response_body = wp_remote_retrieve_body( $response );
 
-      //make from json string object! and encode whole array then to json
-      $api_response_obj = json_decode($response_body);
+      //make from json string array! and encode whole array then to json      
+      $api_response_obj = json_decode($response_body,true); 
+
+      //save conversation to db (temporary)
+      if(array_key_exists('choices',$api_response_obj) && $type == 'completion' && $chatid){
+        global $zmpaiassistant;
+        $messages = $zmpaiassistant['app']->saveGPTConversation($chatid,$api_response_obj['choices'][0]['message']);     
+      }
 
       $json = json_encode(array(
         'type' => $type,
@@ -412,6 +447,12 @@ class APICalls {
       return $transient;
     }
 
+    //after return of transient, functions are only executed every 86400
+
+    //clean conversations once daily (all messages older than 24 hours)
+    global $zmpaiassistant;
+    $zmpaiassistant['app']->cleanGPTConversations();
+
     $response = wp_remote_get( 'https://api.openai.com/v1/models', 
       array(
         'method'      => 'GET',
@@ -436,7 +477,7 @@ class APICalls {
       return NULL;
     }
 
-    set_transient('zmp-aia-models',$models->data, 600);
+    set_transient('zmp-aia-models',$models->data, 86400);
 
     return $models->data;
 

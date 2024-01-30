@@ -43,25 +43,20 @@ class AIForm {
                   <input name="zmp-aia-input-mode" class="uk-input uk-form-small uk-hidden" id="zmp-aia-input-mode" type="text" value="completion">
                 </div> 
               </div> 
-              <div class="uk-width-1-1">       
-                <ul class="js-filter uk-child-width-1-1 uk-grid-collapse" uk-grid>
-                  <li class="tag_completion">
-                    <p><?php echo esc_html__( 'You input some text as a prompt, and the AI Assistant will generate a text completion that attempts to match whatever context or pattern you gave it. For example, if you give the AI Assistant the prompt, "As Descartes said, I think, therefore", it will return the completion " I am" with high probability.', 'zmp-ai-assistant' ); ?></p>
-                  </li>
-                  <li class="tag_image">
-                    <p><?php echo esc_html__( 'The image generations AI Assistant allows you to create an original image given a text prompt. Generated images can have a size of 1024x1024, 1792x1024, or 1024x1792 pixels.', 'zmp-ai-assistant' ); ?></p>
-                  </li>
-                </ul>
-              </div>
               <div class="uk-width-expand@m uk-width-1-1">       
                 <ul class="js-filter uk-child-width-1-1 uk-grid-collapse" uk-grid>
                   <li class="tag_completion">
                     <div uk-grid class="">
                       <div class="uk-width-expand@m uk-width-1-1">
                         <div class="uk-margin-small-top">
-                            <label class="uk-form-label" for="zmp-aia-input-prompt"><?php echo esc_html__( 'Prompt', 'zmp-ai-assistant' ); ?></label>
                             <div class="uk-form-controls">
-                              <textarea name="zmp-aia-input-prompt" class="uk-textarea" id="zmp-aia-input-prompt" rows="16" style="background:#fff;border: 1px solid #8c8f94;"></textarea>
+                              <div id="zmp-aia-div-chat" class="uk-padding-small uk-background-default uk-overflow-auto uk-height-medium" style="white-space: pre-wrap;" contenteditable="true"></div>
+                            </div>
+                        </div> 
+                        <div class="uk-margin-small-top">
+                            <label class="uk-form-label" for="zmp-aia-input-prompt"><?php echo esc_html__( 'Message the AI assistant', 'zmp-ai-assistant' ); ?></label>
+                            <div class="uk-form-controls">
+                              <textarea placeholder="<?php echo esc_html__( 'Your request to the AI assistant', 'zmp-ai-assistant' ); ?>" name="zmp-aia-input-prompt" class="uk-textarea" id="zmp-aia-input-prompt" rows="4" style="background:#fff;border: 1px solid #8c8f94;"></textarea>
                             </div>
                         </div> 
                       </div> 
@@ -82,7 +77,7 @@ class AIForm {
                               <div class="uk-margin-small-top">
                                   <label class="uk-form-label" for="zmp-aia-input-max_tokens">max_tokens</label>
                                   <div class="uk-form-controls">
-                                      <input name="zmp-aia-input-max_tokens" class="uk-input uk-form-small" id="zmp-aia-input-max_tokens" type="number" max="4096" min="1" step="1" placeholder="16">
+                                      <input name="zmp-aia-input-max_tokens" class="uk-input uk-form-small" id="zmp-aia-input-max_tokens" type="number" min="1" step="1" placeholder="4096">
                                   </div>
                               </div>
                             </li>
@@ -92,7 +87,7 @@ class AIForm {
                                   <div class="uk-margin-small-top">
                                     <label class="uk-form-label" for="zmp-aia-input-temperature">temperature</label>
                                     <div class="uk-form-controls">
-                                        <input name="zmp-aia-input-temperature" class="uk-input uk-form-small" id="zmp-aia-input-temperature" type="number" max="1" min="0" step="0.1" placeholder="1">
+                                        <input name="zmp-aia-input-temperature" class="uk-input uk-form-small" id="zmp-aia-input-temperature" type="number" max="2" min="0" step="0.1" placeholder="1">
                                     </div>
                                   </div>
                                 </div>
@@ -143,18 +138,17 @@ class AIForm {
                     <div uk-grid class="">
                       <div class="uk-width-expand@m uk-width-1-1">
                         <div class="uk-margin-small-top">
-                            <label class="uk-form-label" for="zmp-aia-input-imageprompt"><?php echo esc_html__( 'Prompt', 'zmp-ai-assistant' ); ?></label>
-                            <div class="uk-form-controls">
-                              <textarea name="zmp-aia-input-imageprompt" class="uk-textarea" id="zmp-aia-input-imageprompt" rows="12" style="background:#fff;border: 1px solid #8c8f94;"></textarea>
-                            </div>
-                        </div>
-                        <div class="uk-margin-small-top">
-                            <p class="uk-form-label"><?php echo esc_html__( 'Result', 'zmp-ai-assistant' ); ?></p>
-                            <div class="uk-form-controls">
+                            <div class="uk-form-controls uk-padding-small uk-background-default uk-overflow-auto uk-height-medium">
                               <div id="zmp-aia-image-result" class="uk-child-width-1-1 uk-child-width-1-2@m" uk-grid>
                               </div>
                             </div>
-                        </div>   
+                        </div> 
+                        <div class="uk-margin-small-top">
+                            <label class="uk-form-label" for="zmp-aia-input-imageprompt"><?php echo esc_html__( 'Instructions for image generation', 'zmp-ai-assistant' ); ?></label>
+                            <div class="uk-form-controls">
+                              <textarea name="zmp-aia-input-imageprompt" placeholder="<?php echo esc_html__( 'Describe the image to be generated', 'zmp-ai-assistant' ); ?>" class="uk-textarea" id="zmp-aia-input-imageprompt" rows="4" style="background:#fff;border: 1px solid #8c8f94;"></textarea>
+                            </div>
+                        </div>  
                       </div>  
                       <div class="uk-width-1-4@m uk-width-1-1" hidden id="zmpa-aia-toggle-settings-img">                        
                         <div id="zmp-aia-advanced-form">
@@ -238,26 +232,28 @@ class AIForm {
       <div id="zmp-aia-modal" uk-modal="esc-close:false;bg-close:false;">
         <div id="zmp-aia-modal-screen" class="uk-modal-dialog" style="width: 1080px;">
 
-            <div class="uk-modal-header uk-background-primary uk-section-primary uk-preserve-color">
-              <h2 class="uk-modal-title uk-align-left uk-margin-small-top uk-margin-small-bottom" style="color:#fff;"><?php echo esc_html__( 'AI Assistant', 'zmp-ai-assistant' ); ?></h2>
-              <div class="uk-align-left uk-margin-top uk-margin-remove-bottom uk-margin-small-right" style="line-height: 32px;font-weight: 600;color:#fff;"><?php echo esc_html__( 'Choose template:', 'zmp-ai-assistant' ); ?></div>
-              <div class="uk-align-left uk-margin-top uk-margin-small-bottom">
-                <select class="uk-select uk-width-medium uk-form-small" id="zmp-aia-template">
-                  <option value="default"><?php echo esc_html__( 'Default', 'zmp-ai-assistant' ); ?></option>
-                  <?php $this->getTemplatesSelectOptions(); ?>
-                </select>
-              </div>
-              <div class="uk-align-left uk-margin-top uk-margin-small-bottom">
-                <form id="zmp-aia-save-template" name="zmp-aia-save-template">
-                  <div uk-grid class="uk-child-width-auto uk-grid-collapse">
-                    <div>
-                      <input name="zmp-aia-save-template-name" required class="uk-input uk-form-small" type="text" placeholder="Template name" style="border:none;border-bottom-right-radius:unset;border-top-right-radius:unset;">
+            <div class="uk-modal-header uk-background-primary uk-section-primary uk-preserve-color uk-padding" style="padding-bottom:25px;">
+              <div uk-grid class="uk-child-width-1-1 uk-child-width-expand@s">
+                <h2 class="uk-modal-title" style="color:#fff;"><?php echo esc_html__( 'AI Assistant', 'zmp-ai-assistant' ); ?></h2>
+                <div class="">
+                  <select class="uk-select uk-width-expand" id="zmp-aia-template">
+                    <option value="default"><?php echo esc_html__( 'Default', 'zmp-ai-assistant' ); ?></option>
+                    <?php $this->getTemplatesSelectOptions(); ?>
+                  </select>
+                  <input id="zmp-aia-hidden-chat-id" hidden class="uk-hidden" value="<?php echo esc_attr( time() ); ?>">
+                </div>
+                <div class="">
+                  <form id="zmp-aia-save-template" name="zmp-aia-save-template">
+                    <div uk-grid class="uk-child-width-expand uk-grid-collapse">
+                      <div>
+                        <input name="zmp-aia-save-template-name" id="zmp-aia-save-template-name" required class="uk-input" type="text" placeholder="Template name" style="border:none;border-bottom-right-radius:unset;border-top-right-radius:unset;">
+                      </div>
+                      <div class="uk-width-auto">
+                        <button type="submit" form="zmp-aia-save-template" value="Save" class="uk-button uk-button-muted"><?php echo esc_html__( 'Save', 'zmp-ai-assistant' ); ?></button>
+                      </div>
                     </div>
-                    <div>
-                      <button type="submit" form="zmp-aia-save-template" value="Save" class="uk-button uk-button-muted uk-button-small uk-align-left"><?php echo esc_html__( 'Save', 'zmp-ai-assistant' ); ?></button>
-                    </div>
-                  </div>
-                </form>                
+                  </form>                
+                </div>
               </div>
               <button class="uk-modal-close-default uk-light" type="button" uk-close></button>         
             </div>

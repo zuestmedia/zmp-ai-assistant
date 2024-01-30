@@ -11,11 +11,15 @@ class App extends \ZMP\Plugin\App {
    * - api_key 
    * - org_id
    */
-  private $credentials = NULL;
+  private $credentials = array(
+    "api_key" => NULL,
+    "org_id" => NULL,
+    "system_message" => 'You are a helpful assistant.',
+  );
   public function getCredentials($sub_field_name){
     return Helpers::getOption(
       $this->getCredentialsFieldName($sub_field_name),
-      $this->getCredentialsDefaultValue(),
+      $this->getCredentialsDefaultValue($sub_field_name),
       '2',//always checks option if >= 2
       'option_mod',
       $this->getOptPra().'_api_credentials'
@@ -24,8 +28,8 @@ class App extends \ZMP\Plugin\App {
   public function getCredentialsFieldName($sub_field_name) {
     return $sub_field_name;
   }
-  public function getCredentialsDefaultValue(){
-    return $this->credentials;
+  public function getCredentialsDefaultValue($sub_field_name){
+    return $this->credentials[$sub_field_name];
   }
 
   /**
@@ -33,15 +37,15 @@ class App extends \ZMP\Plugin\App {
    */
 
   private $settings = array(
-    "prompt" => 'Say "hi".',
+    "prompt" => '',
     "model" => 'gpt-4',
-    "max_tokens" => 500,
+    "max_tokens" => 4096,
     "temperature" => 1,
     "top_p" => 1,
     "stop" => NULL,
     "presence_penalty" => 0,
     "frequency_penalty" => 0,
-    "imageprompt" => 'A black cat', //img
+    "imageprompt" => '', //img
     "size" => '1024x1024', //img
     "quality" => 'standard', //img
     "style" => 'vivid', //img
@@ -91,12 +95,23 @@ class App extends \ZMP\Plugin\App {
         );
   
       }
+
+      $models_filtered = array();
+      foreach($models_ordered as $key => $data_array){
+
+        if (strpos($key, 'gpt-') !== false && strpos($key, '-instruct') === false) {
+          
+          $models_filtered[$key] = $data_array;
+
+        }
+
+      }
   
       //sort by key
-      ksort($models_ordered);
+      ksort($models_filtered);
 
     }
-    return $models_ordered;
+    return $models_filtered;
 
   }
 
@@ -220,6 +235,68 @@ class App extends \ZMP\Plugin\App {
     }
 
     return $choices;    
+
+  }
+
+  public function getGPTConversations(){
+    return Helpers::getOption(
+      $this->getGPTConversationsFieldName(),
+      array(),
+      '2',//always checks option if >= 2
+      'option'        
+    );
+  }
+  public function getGPTConversationsFieldName() {
+    return $this->getOptPra().'_gpt_conversations';
+  }
+  
+  //save and return messages of this conversation
+  public function saveGPTConversation($conversation,$message){
+
+    $conversations = $this->getGPTConversations();    
+
+    $messages = $this->getGPTConversation($conversation,$conversations);
+
+    $messages[] = $message;
+
+    $conversations[$conversation] = $messages;
+
+    update_option( $this->getGPTConversationsFieldName(), $conversations );
+
+    return $messages;    
+
+  }
+
+  public function getGPTConversation($conversation,$conversations){
+
+    $messages = array();
+    if(array_key_exists($conversation,$conversations)){
+
+      $messages = $conversations[$conversation];
+
+    }
+    return $messages;
+
+  }
+
+  //is cleaned, when models list will be updated (once daily)
+  public function cleanGPTConversations(){
+
+    $conversations = $this->getGPTConversations();    
+
+    $timeminusoneday = time() - 86400;
+
+    $cleaned_conversations = array();
+    foreach($conversations as $conversation => $messages){      
+
+      if($conversation >= $timeminusoneday){
+
+        $cleaned_conversations[$conversation] = $messages;
+
+      }
+
+    }
+    update_option( $this->getGPTConversationsFieldName(), $cleaned_conversations );
 
   }
 

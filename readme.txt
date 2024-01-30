@@ -1,6 +1,6 @@
 === ZMP AI Assistant ===
 Contributors: zuestmedia
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 Tags: gpt, open ai, chat gpt, content generator, image generator, zmplugin
 Requires at least: 4.7
 Tested up to: 6.4
@@ -8,11 +8,11 @@ Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-This Plugin adds the AI Assistant to the edit-post-screen, to directly create content and images with artificial intelligence, while working in WordPress editor.
+This Plugin adds the AI Assistant to the Posts Editor in edit-post-screen views, to directly create content and images with artificial intelligence, while working in WordPress editor.
 
 == Description ==
 
-[ZMP AI Assistant](https://zuestmedia.com/plugins/) extends the WordPress edit-post-screen with the AI Assistant to directly create content and images with artificial intelligence.
+[ZMP AI Assistant](https://zuestmedia.com/plugins/) extends the WordPress Posts Editor with the AI Assistant to directly create content and images with artificial intelligence.
 
 An API key from Open AI is required to use the AI Assistant. You can get a key in your user account at [Open AI](https://platform.openai.com/api-keys).
 
@@ -37,6 +37,15 @@ To install ZMP AI Assistant, go to Dashboard >> Plugins >> Add new. Then enter "
 No. ZMP AI Assistant is an extension of ZMPlugin.
 
 == Changelog ==
+
+= 1.0.3 =
+* New: System Message Setting
+* Update: Save conversations temporary to send complete messages array to api and conversation view
+* Update: Split view into messages prompt and chat conversation area
+* Update: Order & Style of AIForm
+* Update: Models filtered
+* Fix: Version to wp_enqueue_script
+* Fix: Form reset fixes
 
 = 1.0.2 =
 * Fix: Sanitizing & validating post data

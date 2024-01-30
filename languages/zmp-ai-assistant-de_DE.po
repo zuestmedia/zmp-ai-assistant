@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: zmp-ai-assistant\n"
-"POT-Creation-Date: 2023-11-20 13:45+0100\n"
-"PO-Revision-Date: 2023-11-20 13:46+0100\n"
+"POT-Creation-Date: 2024-01-30 12:55+0100\n"
+"PO-Revision-Date: 2024-01-30 12:57+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -10,93 +10,73 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;esc_html__\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: .git\n"
 
-#: app/AIForm.php:40
+#: app/AIForm.php:40 app/Settings.php:73 app/Settings.php:81
 msgid "Chat"
 msgstr "Chat"
 
-#: app/AIForm.php:41 app/Settings.php:74 app/Settings.php:98
+#: app/AIForm.php:41 app/Settings.php:74 app/Settings.php:112
 msgid "Image"
 msgstr "Bild"
 
-#: app/AIForm.php:49
-msgid ""
-"You input some text as a prompt, and the AI Assistant will generate a text "
-"completion that attempts to match whatever context or pattern you gave it. "
-"For example, if you give the AI Assistant the prompt, \"As Descartes said, I "
-"think, therefore\", it will return the completion \" I am\" with high "
-"probability."
-msgstr ""
-"Sie geben einen Text als Aufforderung ein, und der AI Assistent generiert "
-"eine Textvervollständigung, die versucht, dem von Ihnen angegebenen Kontext "
-"oder Muster zu entsprechen. Wenn Sie dem AI Assistent zum Beispiel die "
-"Aufforderung \"As Descartes said, I think, therefore\" geben, wird sie mit "
-"hoher Wahrscheinlichkeit die Vervollständigung \" I am\" zurückgeben."
+#: app/AIForm.php:67
+msgid "Message the AI assistant"
+msgstr "Nachricht an den AI-Assistent"
 
-#: app/AIForm.php:52
-msgid ""
-"The image generations AI Assistant allows you to create an original image "
-"given a text prompt. Generated images can have a size of 1024x1024, "
-"1792x1024, or 1024x1792 pixels."
-msgstr ""
-"Mit dem AI-Assistenten zur Bilderzeugung können Sie anhand einer Textvorgabe "
-"ein Originalbild erstellen. Die erzeugten Bilder können eine Größe von "
-"1024x1024, 1792x1024 oder 1024x1792 Pixel haben."
+#: app/AIForm.php:69
+msgid "Your request to the AI assistant"
+msgstr "Ihre Anfrage an den AI-Assistent"
 
-#: app/AIForm.php:62 app/AIForm.php:146
-msgid "Prompt"
-msgstr "Eingabeaufforderung"
+#: app/AIForm.php:157
+msgid "Instructions for image generation"
+msgstr "Anweisungen zur Bilderzeugung"
 
-#: app/AIForm.php:152
-msgid "Result"
-msgstr "Resultat"
+#: app/AIForm.php:159
+msgid "Describe the image to be generated"
+msgstr "Beschreiben Sie das zu erstellende Bild"
 
-#: app/AIForm.php:204
+#: app/AIForm.php:208
 msgid "Submit"
 msgstr "Senden"
 
-#: app/AIForm.php:205
+#: app/AIForm.php:209
 msgid "Reset"
 msgstr "Zurücksetzen"
 
-#: app/AIForm.php:209
+#: app/AIForm.php:213
 msgid "Copy selected"
 msgstr "Markierung kopieren"
 
-#: app/AIForm.php:212
+#: app/AIForm.php:216
 msgid "Selected to title"
 msgstr "Markierung nach Titel"
 
-#: app/AIForm.php:215
+#: app/AIForm.php:219
 msgid "Selected to content/block"
 msgstr "Markierung nach Inhalt/Block"
 
-#: app/AIForm.php:218 app/AIForm.php:221
+#: app/AIForm.php:222 app/AIForm.php:225
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: app/AIForm.php:242 app/Metabox.php:34 app/SettingsInit.php:15
+#: app/AIForm.php:247 app/Metabox.php:34 app/SettingsInit.php:15
 msgid "AI Assistant"
 msgstr "AI Assistent"
 
-#: app/AIForm.php:243
-msgid "Choose template:"
-msgstr "Vorlage auswählen:"
-
-#: app/AIForm.php:246
+#: app/AIForm.php:250
 msgid "Default"
 msgstr "Standard"
 
-#: app/AIForm.php:257
+#: app/AIForm.php:262
 msgid "Save"
 msgstr "Speichern"
 
-#: app/App.php:214 app/Settings.php:65
+#: app/App.php:229 app/Settings.php:65
 msgid "Default settings"
 msgstr "Standard Einstellungen"
 
@@ -132,19 +112,15 @@ msgstr "API-Schlüssel"
 msgid "Organization ID (optional)"
 msgstr "Organisations-ID (optional)"
 
-#: app/Settings.php:73 app/Settings.php:81
-msgid "Completion"
-msgstr "Completion"
-
-#: app/Settings.php:298
+#: app/Settings.php:312
 msgid "Templates"
 msgstr "Vorlagen"
 
-#: app/Settings.php:304
+#: app/Settings.php:318
 msgid "Default Template"
 msgstr "Standard Vorlage"
 
-#: app/Settings.php:342
+#: app/Settings.php:356
 msgid "Template List"
 msgstr "Vorlagen Liste"
 
@@ -161,6 +137,41 @@ msgstr ""
 "Dieses Plugin fügt den AI-Assistenten zum Edit-Post-Bildschirm hinzu, um "
 "Inhalte und Bilder direkt mit künstlicher Intelligenz zu erstellen, während "
 "man im WordPress-Editor arbeitet."
+
+#~ msgid ""
+#~ "You input some text as a prompt, and the AI Assistant will generate a "
+#~ "text completion that attempts to match whatever context or pattern you "
+#~ "gave it. For example, if you give the AI Assistant the prompt, \"As "
+#~ "Descartes said, I think, therefore\", it will return the completion \" I "
+#~ "am\" with high probability."
+#~ msgstr ""
+#~ "Sie geben einen Text als Aufforderung ein, und der AI Assistent generiert "
+#~ "eine Textvervollständigung, die versucht, dem von Ihnen angegebenen "
+#~ "Kontext oder Muster zu entsprechen. Wenn Sie dem AI Assistent zum "
+#~ "Beispiel die Aufforderung \"As Descartes said, I think, therefore\" "
+#~ "geben, wird sie mit hoher Wahrscheinlichkeit die Vervollständigung \" I "
+#~ "am\" zurückgeben."
+
+#~ msgid ""
+#~ "The image generations AI Assistant allows you to create an original image "
+#~ "given a text prompt. Generated images can have a size of 1024x1024, "
+#~ "1792x1024, or 1024x1792 pixels."
+#~ msgstr ""
+#~ "Mit dem AI-Assistenten zur Bilderzeugung können Sie anhand einer "
+#~ "Textvorgabe ein Originalbild erstellen. Die erzeugten Bilder können eine "
+#~ "Größe von 1024x1024, 1792x1024 oder 1024x1792 Pixel haben."
+
+#~ msgid "Prompt"
+#~ msgstr "Eingabeaufforderung"
+
+#~ msgid "Result"
+#~ msgstr "Resultat"
+
+#~ msgid "Choose template:"
+#~ msgstr "Vorlage auswählen:"
+
+#~ msgid "Completion"
+#~ msgstr "Completion"
 
 #~ msgid "Edit"
 #~ msgstr "Edit"
