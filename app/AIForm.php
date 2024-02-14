@@ -139,7 +139,7 @@ class AIForm {
                       <div class="uk-width-expand@m uk-width-1-1">
                         <div class="uk-margin-small-top">
                             <div class="uk-form-controls uk-padding-small uk-background-default uk-overflow-auto uk-height-medium">
-                              <div id="zmp-aia-image-result" class="uk-child-width-1-1 uk-child-width-1-2@m" uk-grid>
+                              <div id="zmp-aia-image-result" class="uk-child-width-1-1 uk-child-width-1-3@m" uk-grid>
                               </div>
                             </div>
                         </div> 

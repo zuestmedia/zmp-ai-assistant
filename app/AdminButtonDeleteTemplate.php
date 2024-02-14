@@ -18,7 +18,7 @@ class AdminButtonDeleteTemplate extends \ZMP\Plugin\AdminButton {
     if ( isset($_GET['template']) && !isset($_GET['settings-updated']) ) {
 
       //sanitizing & validation
-      $san_template = preg_replace('/[^-a-zA-Z0-9_\s]/', '', $_GET['template']);
+      $san_template = sanitize_text_field( $_GET['template'] );
 
       $template = NULL;
       if( preg_match('/^[A-Za-z0-9_\-\s]+$/', $san_template) ){

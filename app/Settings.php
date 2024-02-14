@@ -130,7 +130,7 @@ class Settings {
                 'select',
                   array(
                     'label'=> 'model',
-                    'class'=>'uk-select uk-form-width-large uk-form-small',
+                    'class'=>'uk-select uk-form-width-large',
                     'options'=> $zmpaiassistant['app']->getModelsOptionsChoices(),
                     'name'=>$zmpaiassistant['app']->getSettingFieldName('model'),
                     'default_value'=>$zmpaiassistant['app']->getSettingDefaultValue('model')
@@ -150,7 +150,7 @@ class Settings {
                     'min'=> '1',
                     //'max'=> '4096',
                     'label'=> 'max_tokens',
-                    'class'=>'uk-input uk-form-width-large uk-form-small',
+                    'class'=>'uk-input uk-form-width-large',
                     'name'=>$zmpaiassistant['app']->getSettingFieldName('max_tokens'),
                     'default_value'=>$zmpaiassistant['app']->getSettingDefaultValue('max_tokens')
                   ),
@@ -168,7 +168,7 @@ class Settings {
                     'min'=> '0',
                     'max'=> '2',
                     'label'=> 'temperature',
-                    'class'=>'uk-input uk-form-width-large uk-form-small',
+                    'class'=>'uk-input uk-form-width-large',
                     'name'=>$zmpaiassistant['app']->getSettingFieldName('temperature'),
                     'default_value'=>$zmpaiassistant['app']->getSettingDefaultValue('temperature')
                   ),
@@ -186,7 +186,7 @@ class Settings {
                     'min'=> '0',
                     'max'=> '1',
                     'label'=> 'top_p',
-                    'class'=>'uk-input uk-form-width-large uk-form-small',
+                    'class'=>'uk-input uk-form-width-large',
                     'name'=>$zmpaiassistant['app']->getSettingFieldName('top_p'),
                     'default_value'=>$zmpaiassistant['app']->getSettingDefaultValue('top_p')
                   ),
@@ -206,7 +206,7 @@ class Settings {
                     'min'=> '-2.0',
                     'max'=> '2.0',
                     'label'=> 'presence_penalty',
-                    'class'=>'uk-input uk-form-width-large uk-form-small',
+                    'class'=>'uk-input uk-form-width-large',
                     'name'=>$zmpaiassistant['app']->getSettingFieldName('presence_penalty'),
                     'default_value'=>$zmpaiassistant['app']->getSettingDefaultValue('presence_penalty')
                   ),
@@ -224,7 +224,7 @@ class Settings {
                     'min'=> '-2.0',
                     'max'=> '2.0',
                     'label'=> 'frequency_penalty',
-                    'class'=>'uk-input uk-form-width-large uk-form-small',
+                    'class'=>'uk-input uk-form-width-large',
                     'name'=>$zmpaiassistant['app']->getSettingFieldName('frequency_penalty'),
                     'default_value'=>$zmpaiassistant['app']->getSettingDefaultValue('frequency_penalty')
                   ),
@@ -239,7 +239,7 @@ class Settings {
                   array(
                     'type'=> 'text',
                     'label'=> 'stop',
-                    'class'=>'uk-input uk-form-width-large uk-form-small',
+                    'class'=>'uk-input uk-form-width-large',
                     'name'=>$zmpaiassistant['app']->getSettingFieldName('stop'),
                     'default_value'=>$zmpaiassistant['app']->getSettingDefaultValue('stop')
                   ),
@@ -253,7 +253,7 @@ class Settings {
                 'select',
                   array(
                     'label'=> 'size',
-                    'class'=>'uk-select uk-form-width-large uk-form-small',
+                    'class'=>'uk-select uk-form-width-large',
                     'options'=> array(
                       array('option'=> '1024x1024','value'=>'1024x1024'),
                       array('option'=> '1792x1024','value'=>'1792x1024'),
@@ -272,7 +272,7 @@ class Settings {
                 'select',
                   array(
                     'label'=> 'quality',
-                    'class'=>'uk-select uk-form-width-large uk-form-small',
+                    'class'=>'uk-select uk-form-width-large',
                     'options'=> array(
                       array('option'=> 'standard','value'=>'standard'),
                       array('option'=> 'hd','value'=>'hd')
@@ -290,7 +290,7 @@ class Settings {
                 'select',
                   array(
                     'label'=> 'style',
-                    'class'=>'uk-select uk-form-width-large uk-form-small',
+                    'class'=>'uk-select uk-form-width-large',
                     'options'=> array(
                       array('option'=> 'vivid','value'=>'vivid'),
                       array('option'=> 'natural','value'=>'natural')
@@ -316,7 +316,7 @@ class Settings {
             'select',
               array(
                 'label'=> __('Default Template', 'zmp-ai-assistant'),
-                'class'=>'uk-select uk-form-width-large uk-form-small',
+                'class'=>'uk-select uk-form-width-large',
                 'name'=>$zmpaiassistant['app']->getDefaultTemplateFieldName(),
                 'default_value'=>$zmpaiassistant['app']->getDefaultTemplateDefaultValue(),
                 'options'=>$zmpaiassistant['app']->getTemplatesOptionsChoices(),

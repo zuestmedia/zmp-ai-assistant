@@ -35,7 +35,7 @@ class APICalls {
 
   public function AjaxResponse_save_gpt_image(){
 
-    if( isset($_POST['security']) && wp_verify_nonce( $_POST['security'], 'zmp_aia_nonce_save_gpt_image' ) ){
+    if( isset($_POST['security']) && wp_verify_nonce( sanitize_text_field( wp_unslash ( $_POST['security'] ) ), 'zmp_aia_nonce_save_gpt_image' ) ){
 
       if( isset($_POST['imageurl']) && !empty($_POST['imageurl']) && filter_var($_POST['imageurl'], FILTER_VALIDATE_URL) !== false){
 
@@ -110,7 +110,7 @@ class APICalls {
 
   public function AjaxResponse_save_gpt_template(){
 
-    if( isset($_POST['security']) && wp_verify_nonce( $_POST['security'], 'zmp_aia_nonce_save_gpt_template' ) ){
+    if( isset($_POST['security']) && wp_verify_nonce( sanitize_text_field( wp_unslash ( $_POST['security'] ) ), 'zmp_aia_nonce_save_gpt_template' ) ){
 
       if( isset($_POST['template_data']) && !empty($_POST['template_data']) ){
 
@@ -149,7 +149,7 @@ class APICalls {
 
   public function AjaxResponse_get_gpt_templates(){
 
-    if( isset($_POST['security']) && wp_verify_nonce( $_POST['security'], 'zmp_aia_nonce_get_gpt_templates' ) ){
+    if( isset($_POST['security']) && wp_verify_nonce( sanitize_text_field( wp_unslash ( $_POST['security'] ) ), 'zmp_aia_nonce_get_gpt_templates' ) ){
 
       $template_name = false;
       if( isset($_POST['template_name']) && !empty($_POST['template_name']) ){
@@ -293,7 +293,7 @@ class APICalls {
     $type = NULL;
     $chatid = NULL;
 
-    if( isset($_POST['security']) && wp_verify_nonce( $_POST['security'], 'zmp_aia_nonce_get_gpt_data' ) ){
+    if( isset($_POST['security']) && wp_verify_nonce( sanitize_text_field( wp_unslash ( $_POST['security'] ) ), 'zmp_aia_nonce_get_gpt_data' ) ){
 
       if( isset($_POST['values']) && is_array($_POST['values']) ){
 

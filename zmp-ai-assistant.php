@@ -1,17 +1,17 @@
 <?php
   /*
   Plugin Name: ZMP AI Assistant
-  Plugin URI: https://zuestmedia.com/plugins/
-  Description: The AI Assistant helps webmasters to create content and images with artificial intelligence
+  Plugin URI: https://zuestmedia.com/ai-assistant/
+  Description: With the AI Assistant, you can interact with chat GPT from Open AI directly in the post editor, and images can also be generated via text instructions with dall-e-3.
   Author: zuestmedia
   Author URI: https://zuestmedia.com/
-  Version: 1.0.3
+  Version: 1.0.4
   Text Domain: zmp-ai-assistant
   Domain Path: /languages
   License: GPL v2 or later
   License URI: https://www.gnu.org/licenses/gpl-2.0.html
   ZMDLID: jfwo0j320ivjvn0432nfg0sweri92fhvbnws
-  ZMUPDAPI: zm
+  ZMUPDAPI: wp
   */
   defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
