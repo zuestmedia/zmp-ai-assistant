@@ -5,7 +5,7 @@
   Description: With the AI Assistant, you can interact with chat GPT from Open AI directly in the post editor, and images can also be generated via text instructions with dall-e-3.
   Author: zuestmedia
   Author URI: https://zuestmedia.com/
-  Version: 1.0.5
+  Version: 1.0.6
   Text Domain: zmp-ai-assistant
   Domain Path: /languages
   License: GPL v2 or later
