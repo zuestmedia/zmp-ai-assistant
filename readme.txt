@@ -1,9 +1,9 @@
 === AI Assistant ===
 Contributors: zuestmedia
-Stable tag: 1.0.6
-Tags: open ai, gpt, chat-gpt, dall-e-3, content generator, image generator, zmplugin
+Stable tag: 1.0.7
+Tags: openai, chat-gpt, dall-e-3, zmplugin
 Requires at least: 4.7
-Tested up to: 6.5
+Tested up to: 6.6
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -45,7 +45,7 @@ The AI Assistant can save templates of instructions that can be reused. Expert t
 Various parameters can be preset or adjusted in the AI Assistant plugin settings or directly in the input mask. For an explanation of the individual parameters, please consult the API documentation from Open AI: https://platform.openai.com/docs/api-reference
 
 = API Key =
-To obtain an API key, you must [register with Open AI](https://platform.openai.com/login?launch). Newly registered users receive a [starting credit of 5 US dollars for use in the first 3 months (as of February 2024)](https://help.openai.com/en/articles/4936830-what-happens-after-i-use-my-free-tokens-or-the-3-months-is-up-in-the-free-trial). This credit is sufficient for numerous chats and images so that you can test the AI Assistant extensively. After that, costs will be incurred for using the Open AI interface.
+To obtain an API key, you must [register with Open AI](https://platform.openai.com/login?launch). Here you can find [your API key](https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key). 
 
 == Privacy Notes ==
 
@@ -83,11 +83,15 @@ Yes AI Assistant is completly free and open source, but an API key from Open AI 
 
 == Changelog ==
 
+= 1.0.7 =
+* Update: Tested up to WP 6.6
+* Update: Readme Text
+
 = 1.0.6 =
-Fix: Errorpage displayname
+* Fix: Errorpage displayname
 
 = 1.0.5 =
-Update: Tested upto WP 6.5
+* Update: Tested up to WP 6.5
 
 = 1.0.4 =
 * Fix: sanitization and nonce issues solved
