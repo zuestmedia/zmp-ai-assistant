@@ -1,6 +1,6 @@
 === AI Assistant ===
 Contributors: zuestmedia
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 Tags: openai, chat-gpt, dall-e-3, zmplugin
 Requires at least: 4.7
 Tested up to: 6.6
@@ -8,7 +8,7 @@ Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-With the AI Assistant, you can interact with chat GPT from Open AI directly in the post editor, and images can also be generated via text instructions with dall-e-3.
+With the AI Assistant, you can interact with Chat GPT from Open AI directly in the post editor and generate images with dall-e-3.
 
 == Description ==
 
@@ -82,6 +82,10 @@ No. Our basic plugin [ZMPlugin](https://wordpress.org/plugins/zmplugin/) is requ
 Yes AI Assistant is completly free and open source, but an API key from Open AI is required to use the AI Assistant WordPress plugin. 
 
 == Changelog ==
+
+= 1.0.8 =
+* Update: .pot file added
+* Update: translations
 
 = 1.0.7 =
 * Update: Tested up to WP 6.6

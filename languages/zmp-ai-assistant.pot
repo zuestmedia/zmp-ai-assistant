@@ -1,0 +1,162 @@
+# Copyright (C) 2024 zuestmedia
+# This file is distributed under the GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: ZMP AI Assistant 1.0.7\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/zmp-ai-assistant\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-07-24T09:16:13+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.10.0\n"
+"X-Domain: zmp-ai-assistant\n"
+
+#. Plugin Name of the plugin
+#: zmp-ai-assistant.php
+#: app/SettingsInit.php:20
+#: config/config.php:12
+msgid "ZMP AI Assistant"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: zmp-ai-assistant.php
+msgid "https://zuestmedia.com/ai-assistant/"
+msgstr ""
+
+#. Description of the plugin
+#: zmp-ai-assistant.php
+msgid "With the AI Assistant, you can interact with Chat GPT from Open AI directly in the post editor and generate images with dall-e-3."
+msgstr ""
+
+#. Author of the plugin
+#: zmp-ai-assistant.php
+msgid "zuestmedia"
+msgstr ""
+
+#. Author URI of the plugin
+#: zmp-ai-assistant.php
+msgid "https://zuestmedia.com/"
+msgstr ""
+
+#: app/AIForm.php:40
+#: app/Settings.php:73
+#: app/Settings.php:81
+msgid "Chat"
+msgstr ""
+
+#: app/AIForm.php:41
+#: app/Settings.php:74
+#: app/Settings.php:112
+msgid "Image"
+msgstr ""
+
+#: app/AIForm.php:57
+msgid "Message the AI assistant"
+msgstr ""
+
+#: app/AIForm.php:59
+msgid "Your request to the AI assistant"
+msgstr ""
+
+#: app/AIForm.php:147
+msgid "Instructions for image generation"
+msgstr ""
+
+#: app/AIForm.php:149
+msgid "Describe the image to be generated"
+msgstr ""
+
+#: app/AIForm.php:198
+msgid "Submit"
+msgstr ""
+
+#: app/AIForm.php:199
+msgid "Reset"
+msgstr ""
+
+#: app/AIForm.php:203
+msgid "Copy selected"
+msgstr ""
+
+#: app/AIForm.php:206
+msgid "Selected to title"
+msgstr ""
+
+#: app/AIForm.php:209
+msgid "Selected to content/block"
+msgstr ""
+
+#: app/AIForm.php:212
+#: app/AIForm.php:215
+msgid "Settings"
+msgstr ""
+
+#: app/AIForm.php:237
+#: app/Metabox.php:34
+#: app/SettingsInit.php:15
+msgid "AI Assistant"
+msgstr ""
+
+#: app/AIForm.php:240
+msgid "Default"
+msgstr ""
+
+#: app/AIForm.php:252
+msgid "Save"
+msgstr ""
+
+#: app/App.php:229
+#: app/Settings.php:65
+msgid "Default settings"
+msgstr ""
+
+#: app/Metabox.php:55
+msgid "Install AI Assistant"
+msgstr ""
+
+#: app/Metabox.php:56
+msgid "Open AI API key missing"
+msgstr ""
+
+#: app/Metabox.php:66
+msgid "Open AI Assistant"
+msgstr ""
+
+#: app/Metabox.php:67
+msgid "Click \"Open\" to create content or images."
+msgstr ""
+
+#: app/Settings.php:18
+msgid "Template deleted."
+msgstr ""
+
+#: app/Settings.php:32
+msgid "API credentials for Open AI"
+msgstr ""
+
+#: app/Settings.php:39
+msgid "API Key"
+msgstr ""
+
+#: app/Settings.php:53
+msgid "Organization ID (optional)"
+msgstr ""
+
+#: app/Settings.php:312
+msgid "Templates"
+msgstr ""
+
+#: app/Settings.php:318
+msgid "Default Template"
+msgstr ""
+
+#: app/Settings.php:356
+msgid "Template List"
+msgstr ""
+
+#: app/SettingsInit.php:21
+msgid "This Plugin adds the AI Assistant to the edit-post-screen, to directly create content and images with artificial intelligence, while working in WordPress editor."
+msgstr ""

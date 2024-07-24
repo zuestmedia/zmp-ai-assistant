@@ -1,8 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: zmp-ai-assistant\n"
-"POT-Creation-Date: 2024-01-30 12:55+0100\n"
-"PO-Revision-Date: 2024-01-30 12:57+0100\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/zmp-ai-assistant\n"
+"POT-Creation-Date: 2024-07-24T09:16:13+00:00\n"
+"PO-Revision-Date: 2024-07-24 11:19+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -10,11 +11,40 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.4\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;esc_html__\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: .git\n"
+
+#. Plugin Name of the plugin
+#: zmp-ai-assistant.php app/SettingsInit.php:20 config/config.php:12
+msgid "ZMP AI Assistant"
+msgstr "ZMP AI Assistent"
+
+#. Plugin URI of the plugin
+#: zmp-ai-assistant.php
+msgid "https://zuestmedia.com/ai-assistant/"
+msgstr "https://zuestmedia.ch/ai-assistant/"
+
+#. Description of the plugin
+#: zmp-ai-assistant.php
+msgid ""
+"With the AI Assistant, you can interact with Chat GPT from Open AI directly "
+"in the post editor and generate images with dall-e-3."
+msgstr ""
+"Mit dem AI Assistent können Sie mit Chat GPT von Open AI direkt im "
+"Beitragseditor interagieren und Bilder mit dall-e-3 generieren."
+
+#. Author of the plugin
+#: zmp-ai-assistant.php
+msgid "zuestmedia"
+msgstr "zuestmedia"
+
+#. Author URI of the plugin
+#: zmp-ai-assistant.php
+msgid "https://zuestmedia.com/"
+msgstr "https://zuestmedia.ch/"
 
 #: app/AIForm.php:40 app/Settings.php:73 app/Settings.php:81
 msgid "Chat"
@@ -24,55 +54,55 @@ msgstr "Chat"
 msgid "Image"
 msgstr "Bild"
 
-#: app/AIForm.php:67
+#: app/AIForm.php:57
 msgid "Message the AI assistant"
 msgstr "Nachricht an den AI-Assistent"
 
-#: app/AIForm.php:69
+#: app/AIForm.php:59
 msgid "Your request to the AI assistant"
 msgstr "Ihre Anfrage an den AI-Assistent"
 
-#: app/AIForm.php:157
+#: app/AIForm.php:147
 msgid "Instructions for image generation"
 msgstr "Anweisungen zur Bilderzeugung"
 
-#: app/AIForm.php:159
+#: app/AIForm.php:149
 msgid "Describe the image to be generated"
 msgstr "Beschreiben Sie das zu erstellende Bild"
 
-#: app/AIForm.php:208
+#: app/AIForm.php:198
 msgid "Submit"
 msgstr "Senden"
 
-#: app/AIForm.php:209
+#: app/AIForm.php:199
 msgid "Reset"
 msgstr "Zurücksetzen"
 
-#: app/AIForm.php:213
+#: app/AIForm.php:203
 msgid "Copy selected"
 msgstr "Markierung kopieren"
 
-#: app/AIForm.php:216
+#: app/AIForm.php:206
 msgid "Selected to title"
 msgstr "Markierung nach Titel"
 
-#: app/AIForm.php:219
+#: app/AIForm.php:209
 msgid "Selected to content/block"
 msgstr "Markierung nach Inhalt/Block"
 
-#: app/AIForm.php:222 app/AIForm.php:225
+#: app/AIForm.php:212 app/AIForm.php:215
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: app/AIForm.php:247 app/Metabox.php:34 app/SettingsInit.php:15
+#: app/AIForm.php:237 app/Metabox.php:34 app/SettingsInit.php:15
 msgid "AI Assistant"
 msgstr "AI Assistent"
 
-#: app/AIForm.php:250
+#: app/AIForm.php:240
 msgid "Default"
 msgstr "Standard"
 
-#: app/AIForm.php:262
+#: app/AIForm.php:252
 msgid "Save"
 msgstr "Speichern"
 
@@ -86,7 +116,7 @@ msgstr "AI Assistent installieren"
 
 #: app/Metabox.php:56
 msgid "Open AI API key missing"
-msgstr "AI-Assistent öffnen"
+msgstr "Open AI API-Schlüssel fehlt"
 
 #: app/Metabox.php:66
 msgid "Open AI Assistant"
@@ -123,10 +153,6 @@ msgstr "Standard Vorlage"
 #: app/Settings.php:356
 msgid "Template List"
 msgstr "Vorlagen Liste"
-
-#: app/SettingsInit.php:20 config/config.php:12
-msgid "ZMP AI Assistant"
-msgstr "ZMP AI Assistent"
 
 #: app/SettingsInit.php:21
 msgid ""
