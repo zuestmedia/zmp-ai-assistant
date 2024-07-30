@@ -85,6 +85,7 @@ class App extends \ZMP\Plugin\App {
     $data = $zmpaiassistant['apicalls']->getModels();
 
     $models_ordered = array();
+    $models_filtered = array();
     if(is_array(($data))){
     
       foreach($data as $model_u){
@@ -95,8 +96,7 @@ class App extends \ZMP\Plugin\App {
         );
   
       }
-
-      $models_filtered = array();
+      
       foreach($models_ordered as $key => $data_array){
 
         if (strpos($key, 'gpt-') !== false && strpos($key, '-instruct') === false) {

@@ -3,9 +3,9 @@
   Plugin Name: ZMP AI Assistant
   Plugin URI: https://zuestmedia.com/ai-assistant/
   Description: With the AI Assistant, you can interact with Chat GPT from Open AI directly in the post editor and generate images with dall-e-3.
-  Author: zuestmedia
+  Author: ZuestMedia
   Author URI: https://zuestmedia.com/
-  Version: 1.0.8
+  Version: 1.1.0
   Text Domain: zmp-ai-assistant
   Domain Path: /languages
   License: GPL v2 or later

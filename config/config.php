@@ -11,7 +11,7 @@ class config {
 
     $this->pluginname = __( 'ZMP AI Assistant', 'zmp-ai-assistant' );
 
-    $this->version = '1.0.8';    
+    $this->version = '1.1.0';    
 
   }
 
